@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="og-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3b82f6"/>
+      <stop offset="100%" style="stop-color:#8b5cf6"/>
+    </linearGradient>
+    <radialGradient id="og-glow1" cx="20%" cy="30%" r="50%">
+      <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:0.15"/>
+      <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:0"/>
+    </radialGradient>
+    <radialGradient id="og-glow2" cx="80%" cy="70%" r="50%">
+      <stop offset="0%" style="stop-color:#8b5cf6;stop-opacity:0.1"/>
+      <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="#050505"/>
+  <rect width="1200" height="630" fill="url(#og-glow1)"/>
+  <rect width="1200" height="630" fill="url(#og-glow2)"/>
+  <text x="600" y="340" font-family="system-ui, -apple-system, sans-serif" font-size="120" font-weight="800" text-anchor="middle" letter-spacing="-4">
+    <tspan fill="#ffffff">DEV</tspan><tspan fill="url(#og-grad)">ULTRA</tspan>
+  </text>
+  <text x="600" y="420" font-family="system-ui, -apple-system, sans-serif" font-size="28" font-weight="400" text-anchor="middle" fill="#a1a1aa" letter-spacing="8">
+    WEB DEVELOPMENT AGENCY
+  </text>
+</svg>

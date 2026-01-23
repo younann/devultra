@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DevUltra Logo Assets</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg-primary: #050505;
+      --bg-secondary: #0a0a0c;
+      --accent-primary: #3b82f6;
+      --accent-secondary: #8b5cf6;
+      --text-primary: #ffffff;
+      --text-secondary: #a1a1aa;
+      --glass-bg: rgba(255, 255, 255, 0.03);
+      --glass-border: rgba(255, 255, 255, 0.08);
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      padding: 40px;
+      min-height: 100vh;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .header h1 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 48px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 10px;
+    }
+
+    .header h1 span {
+      background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .header p {
+      color: var(--text-secondary);
+      font-size: 18px;
+    }
+
+    .section {
+      margin-bottom: 60px;
+    }
+
+    .section-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--accent-primary);
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      margin-bottom: 20px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .card:hover {
+      border-color: var(--accent-primary);
+      transform: translateY(-4px);
+    }
+
+    .card-preview {
+      height: 140px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .card-preview.dark { background: #050505; }
+    .card-preview.light { background: #ffffff; }
+    .card-preview.gradient { background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary)); }
+    .card-preview.checker {
+      background-image:
+        linear-gradient(45deg, #1a1a1a 25%, transparent 25%),
+        linear-gradient(-45deg, #1a1a1a 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, #1a1a1a 75%),
+        linear-gradient(-45deg, transparent 75%, #1a1a1a 75%);
+      background-size: 20px 20px;
+      background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+      background-color: #0a0a0a;
+    }
+
+    .card-preview img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+
+    .card-info {
+      padding: 16px;
+      border-top: 1px solid var(--glass-border);
+    }
+
+    .card-name {
+      font-weight: 600;
+      font-size: 14px;
+      margin-bottom: 4px;
+    }
+
+    .card-file {
+      font-size: 12px;
+      color: var(--text-secondary);
+      font-family: 'SF Mono', Monaco, monospace;
+    }
+
+    .card-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .btn {
+      flex: 1;
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-decoration: none;
+      text-align: center;
+      border: none;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+      color: white;
+    }
+
+    .btn-primary:hover {
+      opacity: 0.9;
+    }
+
+    .btn-secondary {
+      background: var(--glass-bg);
+      color: var(--text-primary);
+      border: 1px solid var(--glass-border);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.08);
+    }
+
+    .icon-grid {
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    }
+
+    .icon-grid .card-preview {
+      height: 120px;
+    }
+
+    .icon-grid .card-preview img {
+      width: 64px;
+      height: 64px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <h1>DEV<span>ULTRA</span></h1>
+    <p>Logo Assets Library</p>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Full Wordmark Logos</div>
+    <div class="grid">
+      <div class="card">
+        <div class="card-preview dark">
+          <img src="logo-full-dark.svg" alt="Logo Dark">
+        </div>
+        <div class="card-info">
+          <div class="card-name">Primary (Dark BG)</div>
+          <div class="card-file">logo-full-dark.svg</div>
+          <div class="card-actions">
+            <a href="logo-full-dark.svg" download class="btn btn-primary">Download</a>
+            <a href="logo-full-dark.svg" target="_blank" class="btn btn-secondary">View</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-preview light">
+          <img src="logo-full-light.svg" alt="Logo Light">
+        </div>
+        <div class="card-info">
+          <div class="card-name">Light Background</div>
+          <div class="card-file">logo-full-light.svg</div>
+          <div class="card-actions">
+            <a href="logo-full-light.svg" download class="btn btn-primary">Download</a>
+            <a href="logo-full-light.svg" target="_blank" class="btn btn-secondary">View</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-preview gradient">
+          <img src="logo-full-gradient-bg.svg" alt="Logo Gradient">
+        </div>
+        <div class="card-info">
+          <div class="card-name">Gradient Background</div>
+          <div class="card-file">logo-full-gradient-bg.svg</div>
+          <div class="card-actions">
+            <a href="logo-full-gradient-bg.svg" download class="btn btn-primary">Download</a>
+            <a href="logo-full-gradient-bg.svg" target="_blank" class="btn btn-secondary">View</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-preview checker">
+          <img src="logo-full-transparent.svg" alt="Logo Transparent">
+        </div>
+        <div class="card-info">
+          <div class="card-name">Transparent (Light Text)</div>
+          <div class="card-file">logo-full-transparent.svg</div>
+          <div class="card-actions">
+            <a href="logo-full-transparent.svg" download class="btn btn-primary">Download</a>
+            <a href="logo-full-transparent.svg" target="_blank" class="btn btn-secondary">View</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-preview checker" style="background-color: #e0e0e0;">
+          <img src="logo-full-transparent-dark.svg" alt="Logo Transparent Dark">
+        </div>
+        <div class="card-info">
+          <div class="card-name">Transparent (Dark Text)</div>
+          <div class="card-file">logo-full-transparent-dark.svg</div>
+          <div class="card-actions">
+            <a href="logo-full-transparent-dark.svg" download class="btn btn-primary">Download</a>
+            <a href="logo-full-transparent-dark.svg" target="_blank" class="btn btn-secondary">View</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Icon Logos (DU)</div>
+    <div class="grid icon-grid">
+      <div class="card">
+        <div class="card-preview dark">
+          <img src="logo-icon-dark.svg" alt="Icon Dark">
+        </div>
+        <div class="card-info">
+          <div class="card-name">Icon Dark</div>
+          <div class="card-file">logo-icon-dark.svg</div>
+          <div class="card-actions">
+            <a href="logo-icon-dark.svg" download class="btn btn-primary">Download</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-preview light">
+          <img src="logo-icon-light.svg" alt="Icon Light">
+        </div>
+        <div class="card-info">
+          <div class="card-name">Icon Light</div>
+          <div class="card-file">logo-icon-light.svg</div>
+          <div class="card-actions">
+            <a href="logo-icon-light.svg" download class="btn btn-primary">Download</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-preview gradient">
+          <img src="logo-icon-gradient.svg" alt="Icon Gradient">
+        </div>
+        <div class="card-info">
+          <div class="card-name">Icon Gradient</div>
+          <div class="card-file">logo-icon-gradient.svg</div>
+          <div class="card-actions">
+            <a href="logo-icon-gradient.svg" download class="btn btn-primary">Download</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-preview dark">
+          <img src="logo-icon-circle.svg" alt="Icon Circle">
+        </div>
+        <div class="card-info">
+          <div class="card-name">Icon Circle</div>
+          <div class="card-file">logo-icon-circle.svg</div>
+          <div class="card-actions">
+            <a href="logo-icon-circle.svg" download class="btn btn-primary">Download</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-preview dark">
+          <img src="logo-icon-mono-white.svg" alt="Icon Mono White">
+        </div>
+        <div class="card-info">
+          <div class="card-name">Mono White</div>
+          <div class="card-file">logo-icon-mono-white.svg</div>
+          <div class="card-actions">
+            <a href="logo-icon-mono-white.svg" download class="btn btn-primary">Download</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-preview light">
+          <img src="logo-icon-mono-black.svg" alt="Icon Mono Black">
+        </div>
+        <div class="card-info">
+          <div class="card-name">Mono Black</div>
+          <div class="card-file">logo-icon-mono-black.svg</div>
+          <div class="card-actions">
+            <a href="logo-icon-mono-black.svg" download class="btn btn-primary">Download</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Monochrome Wordmarks</div>
+    <div class="grid">
+      <div class="card">
+        <div class="card-preview dark">
+          <img src="logo-mono-white.svg" alt="Mono White">
+        </div>
+        <div class="card-info">
+          <div class="card-name">Mono White</div>
+          <div class="card-file">logo-mono-white.svg</div>
+          <div class="card-actions">
+            <a href="logo-mono-white.svg" download class="btn btn-primary">Download</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-preview light">
+          <img src="logo-mono-black.svg" alt="Mono Black">
+        </div>
+        <div class="card-info">
+          <div class="card-name">Mono Black</div>
+          <div class="card-file">logo-mono-black.svg</div>
+          <div class="card-actions">
+            <a href="logo-mono-black.svg" download class="btn btn-primary">Download</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-preview dark">
+          <img src="logo-mono-blue.svg" alt="Mono Blue">
+        </div>
+        <div class="card-info">
+          <div class="card-name">Mono Blue</div>
+          <div class="card-file">logo-mono-blue.svg</div>
+          <div class="card-actions">
+            <a href="logo-mono-blue.svg" download class="btn btn-primary">Download</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-preview dark">
+          <img src="logo-mono-violet.svg" alt="Mono Violet">
+        </div>
+        <div class="card-info">
+          <div class="card-name">Mono Violet</div>
+          <div class="card-file">logo-mono-violet.svg</div>
+          <div class="card-actions">
+            <a href="logo-mono-violet.svg" download class="btn btn-primary">Download</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Favicons & Social</div>
+    <div class="grid icon-grid">
+      <div class="card">
+        <div class="card-preview dark">
+          <img src="favicon-16.svg" alt="Favicon 16" style="width: 32px; height: 32px;">
+        </div>
+        <div class="card-info">
+          <div class="card-name">Favicon 16x16</div>
+          <div class="card-file">favicon-16.svg</div>
+          <div class="card-actions">
+            <a href="favicon-16.svg" download class="btn btn-primary">Download</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-preview dark">
+          <img src="favicon-32.svg" alt="Favicon 32" style="width: 48px; height: 48px;">
+        </div>
+        <div class="card-info">
+          <div class="card-name">Favicon 32x32</div>
+          <div class="card-file">favicon-32.svg</div>
+          <div class="card-actions">
+            <a href="favicon-32.svg" download class="btn btn-primary">Download</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-preview dark">
+          <img src="apple-touch-icon.svg" alt="Apple Touch Icon">
+        </div>
+        <div class="card-info">
+          <div class="card-name">Apple Touch Icon</div>
+          <div class="card-file">apple-touch-icon.svg</div>
+          <div class="card-actions">
+            <a href="apple-touch-icon.svg" download class="btn btn-primary">Download</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-preview dark">
+          <img src="logo-icon-square.svg" alt="App Icon 512">
+        </div>
+        <div class="card-info">
+          <div class="card-name">App Icon 512x512</div>
+          <div class="card-file">logo-icon-square.svg</div>
+          <div class="card-actions">
+            <a href="logo-icon-square.svg" download class="btn btn-primary">Download</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Social / OG Image</div>
+    <div class="grid" style="grid-template-columns: 1fr;">
+      <div class="card">
+        <div class="card-preview dark" style="height: 200px;">
+          <img src="og-image.svg" alt="OG Image" style="max-width: 600px;">
+        </div>
+        <div class="card-info">
+          <div class="card-name">Open Graph Image (1200x630)</div>
+          <div class="card-file">og-image.svg</div>
+          <div class="card-actions" style="max-width: 300px;">
+            <a href="og-image.svg" download class="btn btn-primary">Download</a>
+            <a href="og-image.svg" target="_blank" class="btn btn-secondary">View Full</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
