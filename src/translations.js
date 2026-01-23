@@ -10,49 +10,53 @@ export const translations = {
       cta: 'Get Started'
     },
     hero: {
-      badge: 'Digital Architecture',
-      title1: 'CRAFTING',
-      title2: '3D FUTURES',
-      title3: 'TODAY.',
-      desc: 'Pushing the boundaries of the digital world with immersive 3D websites, powerful automations, and premium tech.',
-      cta1: 'Elevate Your Brand',
-      cta2: 'Explore 3D Lab'
+      badge: 'Web Development Agency',
+      title1: 'WE BUILD',
+      title2: 'DIGITAL',
+      title3: 'SOLUTIONS.',
+      desc: 'From stunning websites to powerful apps and smart automations — we bring your digital vision to life with cutting-edge technology.',
+      cta1: 'Start Your Project',
+      cta2: 'View Our Work'
     },
     services: {
-      badge: 'The Lab',
-      title: 'ENGINEERING IMPACT.',
+      badge: 'Our Services',
+      title: 'WHAT WE DO.',
       items: [
         {
-          title: '3D Experiences',
-          desc: 'Immersive, high-performance web worlds built with React Three Fiber and custom GLSL shaders.'
+          title: 'Web Development',
+          desc: 'Custom websites for every need — eCommerce, education platforms, company sites, and high-converting landing pages.'
         },
         {
-          title: 'Turbo Landing Pages',
-          desc: 'Convert at the speed of light. Our pages are built for maximum impact and zero friction.'
+          title: 'App Development',
+          desc: 'Native and web applications built with modern frameworks for seamless performance across all devices.'
         },
         {
-          title: 'AI Automations',
-          desc: 'Next-gen intelligence integrated into your workflow, saving hundreds of hours weekly.'
+          title: 'DevOps & Cloud',
+          desc: 'Scalable infrastructure, CI/CD pipelines, and cloud solutions to keep your applications running smoothly.'
         },
         {
-          title: 'Elite Support',
-          desc: '24/7 technical mastery to ensure your digital assets are always running at 100%.'
+          title: 'UI/UX Design',
+          desc: 'Beautiful, user-centered designs that enhance user experience and drive engagement.'
+        },
+        {
+          title: 'Business Automation',
+          desc: 'Smart workflows and AI-powered automations that save time and boost your business efficiency.'
         }
       ]
     },
     portfolio: {
       badge: 'Showcase',
-      title: 'DIGITAL ARTIFACTS.',
+      title: 'OUR WORK.',
       cta: 'Explore All',
       items: [
-        { title: 'TITAN FINANCE', category: '3D DASHBOARD' },
-        { title: 'AETHER SKIN', category: 'IMMERSIVE ECOM' },
-        { title: 'NOVA FLOW', category: 'AI AUTOMATION' }
+        { title: 'TITAN FINANCE', category: 'FINTECH PLATFORM' },
+        { title: 'AETHER SKIN', category: 'ECOMMERCE STORE' },
+        { title: 'NOVA FLOW', category: 'BUSINESS AUTOMATION' }
       ]
     },
     contact: {
       badge: 'Get In Touch',
-      title: "Let's Create Something Big.",
+      title: "Let's Build Something Great.",
       emailLabel: 'Email Us',
       callLabel: 'Call Us',
       namePlaceholder: 'Name',
@@ -67,6 +71,29 @@ export const translations = {
       links: 'Links',
       rights: 'All rights reserved.',
       built: 'Built with React & Vite'
+    },
+    process: {
+      badge: 'Our Process',
+      title: 'HOW WE WORK.',
+      subtitle: 'A streamlined approach that takes your project from concept to launch with precision and care.',
+      steps: [
+        { title: 'Discovery', desc: 'We learn about your goals, audience, and vision.' },
+        { title: 'Design', desc: 'Creating stunning visuals and intuitive interfaces.' },
+        { title: 'Development', desc: 'Building with clean, scalable code.' },
+        { title: 'Testing', desc: 'Rigorous QA to ensure perfection.' },
+        { title: 'Launch', desc: 'Deploying and supporting your success.' }
+      ],
+      cta: {
+        text: 'Ready to start your project?',
+        button: 'Get In Touch'
+      }
+    },
+    whatsapp: {
+      tooltip: 'Chat with us!',
+      status: 'Usually replies instantly',
+      greeting: "Hi there! How can we help you today? Feel free to ask about our services.",
+      startChat: 'Start Chat',
+      defaultMessage: "Hi! I'm interested in your services."
     }
   },
   ar: {
@@ -80,49 +107,53 @@ export const translations = {
       cta: 'ابدأ الآن'
     },
     hero: {
-      badge: 'الهندسة الرقمية',
-      title1: 'نصنع',
-      title2: 'مستقبل ثلاثي الأبعاد',
-      title3: 'اليوم.',
-      desc: 'ندفع حدود العالم الرقمي بمواقع غامرة ثلاثية الأبعاد، وأتمتة قوية، وتقنيات متميزة.',
-      cta1: 'ارتقِ بعلامتك التجارية',
-      cta2: 'استكشف مختبرنا'
+      badge: 'وكالة تطوير الويب',
+      title1: 'نبني',
+      title2: 'حلولاً',
+      title3: 'رقمية.',
+      desc: 'من المواقع المذهلة إلى التطبيقات القوية والأتمتة الذكية — نحول رؤيتك الرقمية إلى واقع بأحدث التقنيات.',
+      cta1: 'ابدأ مشروعك',
+      cta2: 'شاهد أعمالنا'
     },
     services: {
-      badge: 'المختبر',
-      title: 'هندسة التأثير.',
+      badge: 'خدماتنا',
+      title: 'ماذا نقدم.',
       items: [
         {
-          title: 'تجارب ثلاثية الأبعاد',
-          desc: 'عوالم ويب غامرة وعالية الأداء مبنية بتقنيات React Three Fiber ومظلات GLSL مخصصة.'
+          title: 'تطوير المواقع',
+          desc: 'مواقع مخصصة لكل احتياج — متاجر إلكترونية، منصات تعليمية، مواقع شركات، وصفحات هبوط عالية التحويل.'
         },
         {
-          title: 'صفحات هبوط فائقة',
-          desc: 'حول الزوار إلى عملاء بسرعة الضوء. صفحاتنا مصممة لأقصى تأثير وبدون عوائق.'
+          title: 'تطوير التطبيقات',
+          desc: 'تطبيقات أصلية وويب مبنية بأحدث الأطر للحصول على أداء سلس عبر جميع الأجهزة.'
         },
         {
-          title: 'أتمتة الذكاء الاصطناعي',
-          desc: 'ذكاء الجيل القادم المدمج في سير عملك، مما يوفر مئات الساعات أسبوعياً.'
+          title: 'DevOps والسحابة',
+          desc: 'بنية تحتية قابلة للتوسع، خطوط CI/CD، وحلول سحابية لضمان تشغيل تطبيقاتك بسلاسة.'
         },
         {
-          title: 'دعم النخبة',
-          desc: 'إتقان تقني على مدار الساعة لضمان تشغيل أصولك الرقمية دائماً بنسبة 100%.'
+          title: 'تصميم UI/UX',
+          desc: 'تصاميم جميلة تركز على المستخدم لتحسين التجربة وزيادة التفاعل.'
+        },
+        {
+          title: 'أتمتة الأعمال',
+          desc: 'سير عمل ذكي وأتمتة مدعومة بالذكاء الاصطناعي توفر الوقت وتعزز كفاءة عملك.'
         }
       ]
     },
     portfolio: {
       badge: 'معرض الأعمال',
-      title: 'تحف رقمية.',
+      title: 'أعمالنا.',
       cta: 'استكشف الكل',
       items: [
-        { title: 'تيتان فاينانس', category: 'لوحة قيادة ثلاثية الأبعاد' },
-        { title: 'إيثر سكين', category: 'تجارة إلكترونية غامرة' },
-        { title: 'نوفا فلو', category: 'أتمتة الذكاء الاصطناعي' }
+        { title: 'تيتان فاينانس', category: 'منصة مالية' },
+        { title: 'إيثر سكين', category: 'متجر إلكتروني' },
+        { title: 'نوفا فلو', category: 'أتمتة الأعمال' }
       ]
     },
     contact: {
       badge: 'تواصل معنا',
-      title: 'لنصنع شيئاً عظيماً.',
+      title: 'لنبني شيئاً عظيماً.',
       emailLabel: 'راسلنا',
       callLabel: 'اتصل بنا',
       namePlaceholder: 'الاسم',
@@ -137,6 +168,29 @@ export const translations = {
       links: 'الروابط',
       rights: 'جميع الحقوق محفوظة.',
       built: 'مبني بواسطة React & Vite'
+    },
+    process: {
+      badge: 'طريقة عملنا',
+      title: 'كيف نعمل.',
+      subtitle: 'نهج مبسط ينقل مشروعك من الفكرة إلى الإطلاق بدقة وعناية.',
+      steps: [
+        { title: 'الاكتشاف', desc: 'نتعرف على أهدافك وجمهورك ورؤيتك.' },
+        { title: 'التصميم', desc: 'إنشاء مرئيات مذهلة وواجهات بديهية.' },
+        { title: 'التطوير', desc: 'البناء بكود نظيف وقابل للتوسع.' },
+        { title: 'الاختبار', desc: 'ضمان الجودة الصارم لضمان الكمال.' },
+        { title: 'الإطلاق', desc: 'النشر ودعم نجاحك.' }
+      ],
+      cta: {
+        text: 'هل أنت مستعد لبدء مشروعك؟',
+        button: 'تواصل معنا'
+      }
+    },
+    whatsapp: {
+      tooltip: 'تحدث معنا!',
+      status: 'عادة نرد فوراً',
+      greeting: 'مرحباً! كيف يمكننا مساعدتك اليوم؟ لا تتردد في السؤال عن خدماتنا.',
+      startChat: 'ابدأ المحادثة',
+      defaultMessage: 'مرحباً! أنا مهتم بخدماتكم.'
     }
   },
   he: {
@@ -150,49 +204,53 @@ export const translations = {
       cta: 'מתחילים'
     },
     hero: {
-      badge: 'ארכיטקטורה דיגיטלית',
-      title1: 'יוצרים',
-      title2: 'עתיד בתלת-ממד',
-      title3: 'היום.',
-      desc: 'פורצים את גבולות העולם הדיגיטלי עם אתרי תלת-ממד סוחפים, אוטומציות חזקות וטכנולוגיית פרימיום.',
-      cta1: 'שדרגו את המותג',
-      cta2: 'חקרו את המעבדה'
+      badge: 'סוכנות פיתוח אתרים',
+      title1: 'אנחנו בונים',
+      title2: 'פתרונות',
+      title3: 'דיגיטליים.',
+      desc: 'מאתרים מרהיבים ועד אפליקציות חזקות ואוטומציות חכמות — אנחנו מביאים את החזון הדיגיטלי שלך לחיים עם טכנולוגיה מתקדמת.',
+      cta1: 'התחילו פרויקט',
+      cta2: 'צפו בעבודות'
     },
     services: {
-      badge: 'המעבדה',
-      title: 'הנדסת אימפקט.',
+      badge: 'השירותים שלנו',
+      title: 'מה אנחנו עושים.',
       items: [
         {
-          title: 'חוויות תלת-ממד',
-          desc: 'עולמות אינטרנט סוחפים ובעלי ביצועים גבוהים שנבנו עם React Three Fiber ו-GLSL shaders מותאמים אישית.'
+          title: 'פיתוח אתרים',
+          desc: 'אתרים מותאמים אישית לכל צורך — חנויות אונליין, פלטפורמות חינוך, אתרי חברות ודפי נחיתה עם המרה גבוהה.'
         },
         {
-          title: 'דפי נחיתה טורבו',
-          desc: 'המרה במהירות האור. הדפים שלנו בנויים להשפעה מקסימלית ואפס חיכוך.'
+          title: 'פיתוח אפליקציות',
+          desc: 'אפליקציות נייטיב ווב בנויות עם פריימוורקים מודרניים לביצועים חלקים בכל המכשירים.'
         },
         {
-          title: 'אוטומציות AI',
-          desc: 'בינה מלאכותית מהדור הבא המשולבת בזרימת העבודה שלך, וחוסכת מאות שעות שבועיות.'
+          title: 'DevOps וענן',
+          desc: 'תשתית סקיילבילית, צינורות CI/CD ופתרונות ענן לשמירה על פעילות חלקה של האפליקציות.'
         },
         {
-          title: 'תמיכת עלית',
-          desc: 'מומחיות טכנית 24/7 כדי להבטיח שהנכסים הדיגיטליים שלך תמיד פועלים ב-100%.'
+          title: 'עיצוב UI/UX',
+          desc: 'עיצובים יפים הממוקדים במשתמש שמשפרים את חוויית המשתמש ומגבירים מעורבות.'
+        },
+        {
+          title: 'אוטומציה עסקית',
+          desc: 'תהליכי עבודה חכמים ואוטומציות מונעות AI שחוסכות זמן ומגבירות את היעילות העסקית.'
         }
       ]
     },
     portfolio: {
       badge: 'גלריה',
-      title: 'יצירות דיגיטליות.',
+      title: 'העבודות שלנו.',
       cta: 'צפו בהכל',
       items: [
-        { title: 'TITAN FINANCE', category: 'לוח בקרה תלת-ממד' },
-        { title: 'AETHER SKIN', category: 'אי-קומרס סוחף' },
-        { title: 'NOVA FLOW', category: 'אוטומציית AI' }
+        { title: 'TITAN FINANCE', category: 'פלטפורמת פינטק' },
+        { title: 'AETHER SKIN', category: 'חנות אונליין' },
+        { title: 'NOVA FLOW', category: 'אוטומציה עסקית' }
       ]
     },
     contact: {
       badge: 'נהיה בקשר',
-      title: 'בואו ניצור משהו גדול.',
+      title: 'בואו נבנה משהו גדול.',
       emailLabel: 'שלחו מייל',
       callLabel: 'התקשרו',
       namePlaceholder: 'שם',
@@ -207,6 +265,29 @@ export const translations = {
       links: 'קישורים',
       rights: 'כל הזכויות שמורות.',
       built: 'נבנה עם React & Vite'
+    },
+    process: {
+      badge: 'התהליך שלנו',
+      title: 'איך אנחנו עובדים.',
+      subtitle: 'גישה יעילה שמובילה את הפרויקט שלך מרעיון להשקה בדייקנות ובקפידה.',
+      steps: [
+        { title: 'גילוי', desc: 'אנחנו לומדים על המטרות, הקהל והחזון שלך.' },
+        { title: 'עיצוב', desc: 'יצירת ויזואליים מרהיבים וממשקים אינטואיטיביים.' },
+        { title: 'פיתוח', desc: 'בנייה עם קוד נקי וסקיילבילי.' },
+        { title: 'בדיקות', desc: 'QA קפדני להבטחת שלמות.' },
+        { title: 'השקה', desc: 'פריסה ותמיכה בהצלחה שלך.' }
+      ],
+      cta: {
+        text: 'מוכנים להתחיל את הפרויקט?',
+        button: 'צרו קשר'
+      }
+    },
+    whatsapp: {
+      tooltip: 'דברו איתנו!',
+      status: 'בדרך כלל עונים מיד',
+      greeting: 'היי! איך נוכל לעזור לך היום? אל תהססו לשאול על השירותים שלנו.',
+      startChat: 'התחל צאט',
+      defaultMessage: 'היי! אני מתעניין בשירותים שלכם.'
     }
   }
 }
