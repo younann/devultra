@@ -49,9 +49,7 @@ export const translations = {
       title: 'OUR WORK.',
       cta: 'Explore All',
       items: [
-        { title: 'TITAN FINANCE', category: 'FINTECH PLATFORM' },
-        { title: 'AETHER SKIN', category: 'ECOMMERCE STORE' },
-        { title: 'NOVA FLOW', category: 'BUSINESS AUTOMATION' }
+        { title: 'Calma By Lamar', category: 'ECOMMERCE WEBSITE', desc: 'Full ecommerce website built from scratch with admin dashboard for complete owner control', link: 'https://calmabylamar.netlify.app/' }
       ]
     },
     contact: {
@@ -146,9 +144,7 @@ export const translations = {
       title: 'أعمالنا.',
       cta: 'استكشف الكل',
       items: [
-        { title: 'تيتان فاينانس', category: 'منصة مالية' },
-        { title: 'إيثر سكين', category: 'متجر إلكتروني' },
-        { title: 'نوفا فلو', category: 'أتمتة الأعمال' }
+        { title: 'Calma By Lamar', category: 'متجر إلكتروني', desc: 'موقع تجارة إلكترونية كامل مبني من الصفر مع لوحة تحكم للمالك', link: 'https://calmabylamar.netlify.app/' }
       ]
     },
     contact: {
@@ -243,9 +239,7 @@ export const translations = {
       title: 'העבודות שלנו.',
       cta: 'צפו בהכל',
       items: [
-        { title: 'TITAN FINANCE', category: 'פלטפורמת פינטק' },
-        { title: 'AETHER SKIN', category: 'חנות אונליין' },
-        { title: 'NOVA FLOW', category: 'אוטומציה עסקית' }
+        { title: 'Calma By Lamar', category: 'אתר מסחר אלקטרוני', desc: 'אתר מסחר אלקטרוני מלא שנבנה מאפס עם לוח בקרה לשליטה מלאה של הבעלים', link: 'https://calmabylamar.netlify.app/' }
       ]
     },
     contact: {

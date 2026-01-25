@@ -4,17 +4,22 @@ import ParallaxSection from '../components/ParallaxSection'
 import { LangContext } from '../App'
 
 const images = [
-  'https://images.unsplash.com/photo-1614850523296-e8c041de4392?q=80&w=2070&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1964&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?q=80&w=1974&auto=format&fit=crop'
+  '/projects/calma-by-lamar.png'
 ]
-const offsets = [40, -60, 80]
+const offsets = [40]
 
 const ProjectCard = ({ project, index, image, offset }) => {
+  const handleClick = () => {
+    if (project.link) {
+      window.open(project.link, '_blank', 'noopener,noreferrer')
+    }
+  }
+
   return (
     <ParallaxSection offset={offset} speed={1.5}>
       <motion.div
         className="portfolio-card"
+        onClick={handleClick}
         style={{
           position: 'relative',
           borderRadius: 'clamp(20px, 5vw, 40px)',
@@ -25,15 +30,29 @@ const ProjectCard = ({ project, index, image, offset }) => {
           border: '1px solid var(--glass-border)'
         }}
       >
-        <div style={{ height: '70%', overflow: 'hidden' }}>
+        <motion.div
+          style={{ height: '70%', overflow: 'hidden', position: 'relative' }}
+          initial="rest"
+          whileHover="hover"
+        >
           <motion.img
             src={image}
             alt={project.title}
-            whileHover={{ scale: 1.15 }}
+            variants={{ rest: { scale: 1 }, hover: { scale: 1.15 } }}
             transition={{ duration: 0.8 }}
             style={{ width: '100%', height: '100%', objectFit: 'cover' }}
           />
-        </div>
+          <motion.div
+            variants={{ rest: { opacity: 1 }, hover: { opacity: 0 } }}
+            transition={{ duration: 0.4 }}
+            style={{
+              position: 'absolute',
+              inset: 0,
+              background: 'linear-gradient(135deg, rgba(138, 43, 226, 0.3) 0%, rgba(0, 206, 209, 0.2) 100%)',
+              pointerEvents: 'none'
+            }}
+          />
+        </motion.div>
         <div style={{ padding: 'clamp(20px, 5vw, 40px)', background: 'var(--bg-secondary)' }}>
           <span style={{
             fontSize: 'clamp(0.7rem, 2vw, 0.9rem)',
