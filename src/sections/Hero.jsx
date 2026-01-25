@@ -95,8 +95,8 @@ const Hero = () => {
           </motion.p>
 
           <div className="hero-buttons" style={{ display: 'flex', gap: '15px', justifyContent: 'center', flexWrap: 'wrap' }}>
-            <button className="primary-btn">{t.hero.cta1}</button>
-            <button className="secondary-btn">{t.hero.cta2}</button>
+            <button className="primary-btn" onClick={()=>window.location.href='#contact'}>{t.hero.cta1}</button>
+            <button className="secondary-btn" onClick={()=>window.location.href='#portfolio'}>{t.hero.cta2}</button>
           </div>
         </motion.div>
       </motion.div>
