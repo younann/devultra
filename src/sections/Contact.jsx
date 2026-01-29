@@ -106,13 +106,16 @@ const Contact = () => {
                 try {
                   // Get your form ID from https://formspree.io (free, 50 submissions/month)
                   // Replace YOUR_FORM_ID with your actual Formspree form ID
-                  const response = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
-                    method: 'POST',
-                    body: formData,
-                    headers: {
-                      'Accept': 'application/json'
-                    }
-                  })
+                  const response = await fetch(
+                    "https://formspree.io/f/mykjwpbj",
+                    {
+                      method: "POST",
+                      body: formData,
+                      headers: {
+                        Accept: "application/json",
+                      },
+                    },
+                  );
 
                   if (response.ok) {
                     setFormStatus('success')
