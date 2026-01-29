@@ -1,10 +1,12 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { motion } from 'framer-motion'
-import { Mail, Phone } from 'lucide-react'
+import { Mail, Phone, CheckCircle, AlertCircle } from 'lucide-react'
 import { LangContext } from '../App'
 
 const Contact = () => {
   const { t } = useContext(LangContext)
+  const [formStatus, setFormStatus] = useState(null) // 'success', 'error', or null
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   const inputStyle = {
     background: 'rgba(255,255,255,0.05)',
@@ -81,40 +83,115 @@ const Contact = () => {
           className="glass contact-form"
           style={{ padding: 'clamp(25px, 5vw, 40px)', borderRadius: '30px' }}
         >
-          <form style={{ display: 'flex', flexDirection: 'column', gap: '20px' }} onSubmit={(e) => e.preventDefault()}>
-            <div className="form-row">
-              <input
-                type="text"
-                placeholder={t.contact.namePlaceholder}
-                style={inputStyle}
-                onFocus={(e) => e.target.style.borderColor = 'var(--accent-primary)'}
-                onBlur={(e) => e.target.style.borderColor = 'var(--glass-border)'}
-              />
-              <input
-                type="email"
-                placeholder={t.contact.emailPlaceholder}
-                style={inputStyle}
-                onFocus={(e) => e.target.style.borderColor = 'var(--accent-primary)'}
-                onBlur={(e) => e.target.style.borderColor = 'var(--glass-border)'}
-              />
+          {formStatus === 'success' ? (
+            <div style={{ textAlign: 'center', padding: '40px 20px' }}>
+              <CheckCircle size={60} color="#22c55e" style={{ marginBottom: '20px' }} />
+              <h3 style={{ fontSize: '1.5rem', marginBottom: '10px' }}>
+                {t.dir === 'rtl' ? 'תודה!' : 'Thank you!'}
+              </h3>
+              <p style={{ color: 'var(--text-secondary)' }}>
+                {t.dir === 'rtl' ? 'ההודעה נשלחה בהצלחה. נחזור אליך בהקדם.' : 'Your message has been sent. We\'ll get back to you soon.'}
+              </p>
             </div>
-            <select style={{ ...inputStyle, cursor: 'pointer' }}>
-              <option value="">{t.contact.servicePlaceholder}</option>
-              <option value="web-development">Web Development</option>
-              <option value="app-development">App Development</option>
-              <option value="devops">DevOps & Cloud</option>
-              <option value="design">UI/UX Design</option>
-              <option value="automation">Business Automation</option>
-            </select>
-            <textarea
-              placeholder={t.contact.messagePlaceholder}
-              rows="5"
-              style={{ ...inputStyle, resize: 'none' }}
-              onFocus={(e) => e.target.style.borderColor = 'var(--accent-primary)'}
-              onBlur={(e) => e.target.style.borderColor = 'var(--glass-border)'}
-            />
-            <button type="submit" className="contact-submit-btn">{t.contact.submit}</button>
-          </form>
+          ) : (
+            <form
+              style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}
+              onSubmit={async (e) => {
+                e.preventDefault()
+                setIsSubmitting(true)
+                setFormStatus(null)
+
+                const formData = new FormData(e.target)
+
+                try {
+                  // Get your form ID from https://formspree.io (free, 50 submissions/month)
+                  // Replace YOUR_FORM_ID with your actual Formspree form ID
+                  const response = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                      'Accept': 'application/json'
+                    }
+                  })
+
+                  if (response.ok) {
+                    setFormStatus('success')
+                    e.target.reset()
+                  } else {
+                    setFormStatus('error')
+                  }
+                } catch (error) {
+                  setFormStatus('error')
+                }
+
+                setIsSubmitting(false)
+              }}
+            >
+              {formStatus === 'error' && (
+                <div style={{
+                  background: 'rgba(239, 68, 68, 0.1)',
+                  border: '1px solid rgba(239, 68, 68, 0.3)',
+                  borderRadius: '12px',
+                  padding: '12px 16px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '10px',
+                  color: '#ef4444'
+                }}>
+                  <AlertCircle size={20} />
+                  <span>{t.dir === 'rtl' ? 'שגיאה בשליחה. נסה שוב.' : 'Error sending. Please try again.'}</span>
+                </div>
+              )}
+              <div className="form-row">
+                <input
+                  type="text"
+                  name="name"
+                  required
+                  placeholder={t.contact.namePlaceholder}
+                  style={inputStyle}
+                  onFocus={(e) => e.target.style.borderColor = 'var(--accent-primary)'}
+                  onBlur={(e) => e.target.style.borderColor = 'var(--glass-border)'}
+                />
+                <input
+                  type="email"
+                  name="email"
+                  required
+                  placeholder={t.contact.emailPlaceholder}
+                  style={inputStyle}
+                  onFocus={(e) => e.target.style.borderColor = 'var(--accent-primary)'}
+                  onBlur={(e) => e.target.style.borderColor = 'var(--glass-border)'}
+                />
+              </div>
+              <select name="service" required style={{ ...inputStyle, cursor: 'pointer' }}>
+                <option value="">{t.contact.servicePlaceholder}</option>
+                <option value="web-development">Web Development</option>
+                <option value="app-development">App Development</option>
+                <option value="devops">DevOps & Cloud</option>
+                <option value="design">UI/UX Design</option>
+                <option value="automation">Business Automation</option>
+              </select>
+              <textarea
+                name="message"
+                required
+                placeholder={t.contact.messagePlaceholder}
+                rows="5"
+                style={{ ...inputStyle, resize: 'none' }}
+                onFocus={(e) => e.target.style.borderColor = 'var(--accent-primary)'}
+                onBlur={(e) => e.target.style.borderColor = 'var(--glass-border)'}
+              />
+              <button
+                type="submit"
+                className="contact-submit-btn"
+                disabled={isSubmitting}
+                style={{ opacity: isSubmitting ? 0.7 : 1 }}
+              >
+                {isSubmitting
+                  ? (t.dir === 'rtl' ? 'שולח...' : 'Sending...')
+                  : t.contact.submit
+                }
+              </button>
+            </form>
+          )}
         </motion.div>
       </div>
 

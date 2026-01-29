@@ -27,9 +27,7 @@ const Footer = () => {
           <div>
             <h4 style={{ marginBottom: '15px', fontSize: 'clamp(0.9rem, 2vw, 1rem)' }}>{t.footer.social}</h4>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-              <a href="#" style={linkStyle} onMouseEnter={(e) => e.target.style.color = '#fff'} onMouseLeave={(e) => e.target.style.color = 'var(--text-secondary)'}>Twitter/X</a>
-              <a href="#" style={linkStyle} onMouseEnter={(e) => e.target.style.color = '#fff'} onMouseLeave={(e) => e.target.style.color = 'var(--text-secondary)'}>LinkedIn</a>
-              <a href="#" style={linkStyle} onMouseEnter={(e) => e.target.style.color = '#fff'} onMouseLeave={(e) => e.target.style.color = 'var(--text-secondary)'}>Instagram</a>
+              <a href="https://instagram.com/dev.ultra.26" target="_blank" rel="noopener noreferrer" style={linkStyle} onMouseEnter={(e) => e.target.style.color = '#fff'} onMouseLeave={(e) => e.target.style.color = 'var(--text-secondary)'}>Instagram</a>
             </div>
           </div>
           <div>
