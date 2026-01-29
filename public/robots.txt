@@ -1,0 +1,12 @@
+# DevUltra Agency - Robots.txt
+# https://devultra.net
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://devultra.net/sitemap.xml
+
+# Block source maps and build artifacts
+Disallow: /assets/*.js.map
+Disallow: /assets/*.css.map

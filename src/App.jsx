@@ -14,15 +14,44 @@ import { translations } from './translations'
 export const LangContext = createContext()
 
 function App() {
-  const [lang, setLang] = useState('en')
+  // Initialize language from URL param or default to 'en'
+  const getInitialLang = () => {
+    const params = new URLSearchParams(window.location.search)
+    const urlLang = params.get('lang')
+    if (urlLang && ['en', 'he', 'ar'].includes(urlLang)) {
+      return urlLang
+    }
+    return 'en'
+  }
+
+  const [lang, setLangState] = useState(getInitialLang)
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
   const [isLoading, setIsLoading] = useState(true)
+
+  // Custom setLang that also updates URL
+  const setLang = (newLang) => {
+    setLangState(newLang)
+    const url = new URL(window.location.href)
+    url.searchParams.set('lang', newLang)
+    window.history.replaceState({}, '', url)
+  }
 
   const t = translations[lang]
 
   useEffect(() => {
     document.documentElement.dir = t.dir
     document.documentElement.lang = lang
+
+    // Update meta description based on language
+    const metaDesc = document.querySelector('meta[name="description"]')
+    if (metaDesc) {
+      const descriptions = {
+        en: 'DevUltra Agency - Professional web development, app development & business automation services in Israel. Custom digital solutions for Israeli businesses.',
+        he: 'DevUltra Agency - שירותי בניית אתרים, פיתוח אפליקציות ואוטומציה עסקית בישראל. פתרונות דיגיטליים מותאמים אישית לעסקים ישראליים.',
+        ar: 'DevUltra Agency - خدمات تطوير المواقع والتطبيقات وأتمتة الأعمال في إسرائيل. حلول رقمية مخصصة للشركات.'
+      }
+      metaDesc.setAttribute('content', descriptions[lang])
+    }
   }, [lang, t.dir])
 
   useEffect(() => {
