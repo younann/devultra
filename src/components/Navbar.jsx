@@ -2,12 +2,12 @@ import React, { useState, useEffect, useContext, useRef } from 'react'
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'framer-motion'
 import { List, X, Translate, Check } from '@phosphor-icons/react'
 import { LangContext } from '../App'
-import { PATHS } from '../seo'
+import { pagePath } from '../seo'
 
 const LANG_NAMES = { en: 'English', he: 'עברית', ar: 'العربية' }
 
 export default function Navbar() {
-  const { lang, t } = useContext(LangContext)
+  const { lang, t, page, home } = useContext(LangContext)
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   const [langOpen, setLangOpen] = useState(false)
@@ -34,11 +34,11 @@ export default function Navbar() {
   }, [menuOpen])
 
   const links = [
-    { name: t.nav.services, href: '#services' },
-    { name: t.nav.ai, href: '#ai' },
-    { name: t.nav.work, href: '#portfolio' },
-    { name: t.nav.process, href: '#process' },
-    { name: t.nav.faq, href: '#faq' }
+    { name: t.nav.services, href: `${home}#services` },
+    { name: t.nav.ai, href: `${home}#ai` },
+    { name: t.nav.work, href: `${home}#portfolio` },
+    { name: t.nav.process, href: `${home}#process` },
+    { name: t.nav.faq, href: `${home}#faq` }
   ]
 
   return (
@@ -48,7 +48,7 @@ export default function Navbar() {
       }`}
     >
       <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <a href="#main" className="flex items-center" aria-label="DevUltra home">
+        <a href={home || '#main'} className="flex items-center" aria-label="DevUltra home">
           <img src="/brand/logo-full-light.webp" alt="DevUltra" width="188" height="30" className="h-[30px] w-auto" />
         </a>
 
@@ -90,7 +90,7 @@ export default function Navbar() {
                   {Object.entries(LANG_NAMES).map(([code, name]) => (
                     <a
                       key={code}
-                      href={PATHS[code]}
+                      href={pagePath(code, page)}
                       hrefLang={code}
                       lang={code}
                       role="menuitemradio"
@@ -107,7 +107,7 @@ export default function Navbar() {
             </AnimatePresence>
           </div>
 
-          <a href="#contact" className="btn btn-sm btn-primary hidden sm:inline-flex">{t.nav.cta}</a>
+          <a href={`${home}#contact`} className="btn btn-sm btn-primary hidden sm:inline-flex">{t.nav.cta}</a>
 
           <button
             onClick={() => setMenuOpen(true)}
@@ -153,7 +153,7 @@ export default function Navbar() {
                 </motion.a>
               ))}
             </div>
-            <a href="#contact" onClick={() => setMenuOpen(false)} className="btn btn-primary mt-8 w-full">{t.nav.cta}</a>
+            <a href={`${home}#contact`} onClick={() => setMenuOpen(false)} className="btn btn-primary mt-8 w-full">{t.nav.cta}</a>
           </motion.div>
         )}
       </AnimatePresence>

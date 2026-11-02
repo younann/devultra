@@ -3,12 +3,12 @@ import React from 'react'
 import { renderToString } from 'react-dom/server'
 import App from './App.jsx'
 
-export { headTags, LANGS, PATHS, META, SITE } from './seo'
+export { headTags, LANGS, PAGES, pagePath, META, SITE } from './seo'
 
-export function render(lang) {
+export function render(lang, page) {
   return renderToString(
     <React.StrictMode>
-      <App initialLang={lang} />
+      <App initialLang={lang} page={page} />
     </React.StrictMode>
   )
 }

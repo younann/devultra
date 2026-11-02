@@ -1,13 +1,24 @@
 // Per-language URLs, metadata and structured data
+import { legal } from './legal'
+
 export const SITE = 'https://devultra.net'
 export const LANGS = ['he', 'en', 'ar']
 export const DEFAULT_LANG = 'he'
 export const PATHS = { he: '/', en: '/en/', ar: '/ar/' }
+export const PAGES = ['home', 'accessibility', 'privacy']
+
+export function pagePath(lang, page = 'home') {
+  return PATHS[lang] + (page === 'home' ? '' : `${page}/`)
+}
 
 export function langFromPath(pathname) {
   if (pathname.startsWith('/en')) return 'en'
   if (pathname.startsWith('/ar')) return 'ar'
   return DEFAULT_LANG
+}
+
+export function pageFromPath(pathname) {
+  return PAGES.find((p) => p !== 'home' && pathname.includes(`/${p}`)) || 'home'
 }
 
 export const META = {
@@ -107,13 +118,19 @@ function jsonLd(lang) {
   }
 }
 
+export function pageMeta(lang, page = 'home') {
+  if (page === 'home') return META[lang]
+  const l = legal[page][lang]
+  return { ...META[lang], title: `${l.title} | DevUltra`, description: l.description }
+}
+
 // Head tags injected at build time
-export function headTags(lang) {
-  const m = META[lang]
-  const url = SITE + PATHS[lang]
+export function headTags(lang, page = 'home') {
+  const m = pageMeta(lang, page)
+  const url = SITE + pagePath(lang, page)
   const og = SITE + '/brand/og-image.png'
-  const alternates = LANGS.map((l) => `<link rel="alternate" hreflang="${l}" href="${SITE + PATHS[l]}">`)
-  alternates.push(`<link rel="alternate" hreflang="x-default" href="${SITE}/">`)
+  const alternates = LANGS.map((l) => `<link rel="alternate" hreflang="${l}" href="${SITE + pagePath(l, page)}">`)
+  alternates.push(`<link rel="alternate" hreflang="x-default" href="${SITE + pagePath(DEFAULT_LANG, page)}">`)
   const otherLocales = LANGS.filter((l) => l !== lang).map((l) => `<meta property="og:locale:alternate" content="${META[l].locale}">`)
   return [
     `<title>${esc(m.title)}</title>`,
@@ -134,6 +151,6 @@ export function headTags(lang) {
     `<meta name="twitter:title" content="${esc(m.title)}">`,
     `<meta name="twitter:description" content="${esc(m.description)}">`,
     `<meta name="twitter:image" content="${og}">`,
-    `<script type="application/ld+json">${JSON.stringify(jsonLd(lang)).replace(/</g, '\\u003c')}</script>`
-  ].join('\n    ')
+    page === 'home' ? `<script type="application/ld+json">${JSON.stringify(jsonLd(lang)).replace(/</g, '\\u003c')}</script>` : ''
+  ].filter(Boolean).join('\n    ')
 }

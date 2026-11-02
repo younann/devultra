@@ -13,45 +13,54 @@ import Contact from './sections/Contact'
 import Footer from './components/Footer'
 import WhatsAppButton from './components/WhatsAppButton'
 import { translations } from './translations'
-import { META, PATHS } from './seo'
+import { PATHS, pageMeta, pagePath } from './seo'
+import LegalPage from './sections/LegalPage'
 
 export const LangContext = createContext()
 
-function App({ initialLang }) {
+function App({ initialLang, page = 'home' }) {
   const lang = initialLang
+  // Section links point home from other pages
+  const home = page === 'home' ? '' : PATHS[lang]
   const t = translations[lang]
 
   // Each language is its own page
   const setLang = (next) => {
-    if (next !== lang) window.location.assign(PATHS[next])
+    if (next !== lang) window.location.assign(pagePath(next, page))
   }
 
   useEffect(() => {
     document.documentElement.dir = t.dir
     document.documentElement.lang = lang
-    document.title = META[lang].title
-  }, [lang, t.dir])
+    document.title = pageMeta(lang, page).title
+  }, [lang, page, t.dir])
 
   return (
-    <LangContext.Provider value={{ lang, setLang, t }}>
+    <LangContext.Provider value={{ lang, setLang, t, page, home }}>
       <MotionConfig reducedMotion="user">
         <a
           href="#main"
           className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:start-3 focus:z-[100] focus:rounded-full focus:bg-ink focus:px-4 focus:py-2 focus:text-bg"
         >
-          Skip to content
+          {t.a11y.skip}
         </a>
         <Navbar />
         <main id="main">
-          <Hero />
-          <Promises />
-          <Services />
-          <AISolutions />
-          <Portfolio />
-          <Process />
-          <About />
-          <FAQ />
-          <Contact />
+          {page === 'home' ? (
+            <>
+              <Hero />
+              <Promises />
+              <Services />
+              <AISolutions />
+              <Portfolio />
+              <Process />
+              <About />
+              <FAQ />
+              <Contact />
+            </>
+          ) : (
+            <LegalPage page={page} />
+          )}
         </main>
         <Footer />
         <WhatsAppButton />

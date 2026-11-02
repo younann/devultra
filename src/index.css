@@ -164,11 +164,6 @@ p { text-wrap: pretty; }
   border-radius: 6px;
 }
 
-.sr-only {
-  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
-  overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0;
-}
-
 @layer components {
 /* Shape rule: buttons pill, cards 20px, inputs 12px */
 .btn {
@@ -251,7 +246,9 @@ p { text-wrap: pretty; }
   width: max-content;
   animation: marquee 40s linear infinite;
 }
-.marquee:hover .marquee-track { animation-play-state: paused; }
+.marquee:hover .marquee-track,
+.marquee:focus-within .marquee-track,
+.marquee.is-paused .marquee-track { animation-play-state: paused; }
 [dir='rtl'] .marquee-track { animation-direction: reverse; }
 @keyframes marquee {
   to { transform: translateX(-50%); }

@@ -1,18 +1,18 @@
 import React, { useContext } from 'react'
 import { InstagramLogo, WhatsappLogo, EnvelopeSimple } from '@phosphor-icons/react'
 import { LangContext } from '../App'
-import { PATHS } from '../seo'
+import { pagePath } from '../seo'
 
 const LANG_NAMES = { he: 'עברית', en: 'English', ar: 'العربية' }
 
 export default function Footer() {
-  const { lang, t } = useContext(LangContext)
+  const { lang, t, page, home } = useContext(LangContext)
   const links = [
-    { name: t.nav.services, href: '#services' },
-    { name: t.nav.ai, href: '#ai' },
-    { name: t.nav.work, href: '#portfolio' },
-    { name: t.nav.process, href: '#process' },
-    { name: t.nav.faq, href: '#faq' }
+    { name: t.nav.services, href: `${home}#services` },
+    { name: t.nav.ai, href: `${home}#ai` },
+    { name: t.nav.work, href: `${home}#portfolio` },
+    { name: t.nav.process, href: `${home}#process` },
+    { name: t.nav.faq, href: `${home}#faq` }
   ]
   const social = [
     { Icon: InstagramLogo, label: 'Instagram', href: 'https://instagram.com/dev.ultra.26' },
@@ -54,9 +54,13 @@ export default function Footer() {
           <p className="text-sm text-ink-3">
             &copy; {new Date().getFullYear()} DevUltra. {t.footer.rights}
           </p>
+          <nav aria-label="Legal" className="flex gap-4">
+            <a href={pagePath(lang, 'accessibility')} className="inline-flex min-h-11 items-center text-sm text-ink-2 underline-offset-4 transition-colors hover:text-ink hover:underline">{t.a11y.statement}</a>
+            <a href={pagePath(lang, 'privacy')} className="inline-flex min-h-11 items-center text-sm text-ink-2 underline-offset-4 transition-colors hover:text-ink hover:underline">{t.a11y.privacy}</a>
+          </nav>
           <nav aria-label="Language" className="flex gap-4">
             {Object.entries(LANG_NAMES).filter(([code]) => code !== lang).map(([code, name]) => (
-              <a key={code} href={PATHS[code]} hrefLang={code} lang={code} className="inline-flex min-h-11 items-center text-sm text-ink-2 transition-colors hover:text-ink">
+              <a key={code} href={pagePath(code, page)} hrefLang={code} lang={code} className="inline-flex min-h-11 items-center text-sm text-ink-2 transition-colors hover:text-ink">
                 {name}
               </a>
             ))}

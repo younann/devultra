@@ -1,5 +1,5 @@
-import React, { useContext } from 'react'
-import { CurrencyCircleDollar, Eye, Key, Translate } from '@phosphor-icons/react'
+import React, { useContext, useState } from 'react'
+import { CurrencyCircleDollar, Eye, Key, Translate, Pause, Play } from '@phosphor-icons/react'
 import Reveal from '../components/Reveal'
 import { LangContext } from '../App'
 
@@ -14,6 +14,7 @@ const LOGOS = [
 
 export default function Promises() {
   const { t } = useContext(LangContext)
+  const [paused, setPaused] = useState(false)
 
   return (
     <section aria-label="Our commitments" className="night border-t border-line">
@@ -33,8 +34,19 @@ export default function Promises() {
       </div>
 
       <div className="border-t border-line py-10">
-        <p className="mb-7 px-4 text-center text-sm text-ink-3">{t.stack}</p>
-        <div className="marquee overflow-hidden" dir="ltr">
+        <div className="mb-7 flex items-center justify-center gap-3 px-4">
+          <p className="text-center text-sm text-ink-3">{t.stack}</p>
+          <button
+            type="button"
+            onClick={() => setPaused((p) => !p)}
+            aria-pressed={paused}
+            aria-label={paused ? t.a11y.play : t.a11y.pause}
+            className="btn btn-sm btn-secondary !px-0 size-11 shrink-0"
+          >
+            {paused ? <Play size={16} weight="fill" /> : <Pause size={16} weight="fill" />}
+          </button>
+        </div>
+        <div className={`marquee overflow-hidden${paused ? ' is-paused' : ''}`} dir="ltr">
           <div className="marquee-track">
             {[0, 1].map((dup) => (
               <ul key={dup} className="flex shrink-0 items-center gap-14 pe-14" aria-hidden={dup === 1}>

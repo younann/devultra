@@ -26,7 +26,7 @@ export default function Services() {
                 <Robot size={26} weight="duotone" />
               </span>
               <h3 className="mt-7 text-2xl font-semibold sm:text-3xl">{s.ai.title}</h3>
-              <p className="mt-3 max-w-[44ch] text-white/85">{s.ai.desc}</p>
+              <p className="mt-3 max-w-[44ch] text-white">{s.ai.desc}</p>
               <ul className="mt-8 flex flex-wrap gap-2">
                 {[
                   [ChatCircleText, t.ai.tabs[0].label],

@@ -8,13 +8,13 @@ import '@fontsource/ibm-plex-sans-arabic/500.css'
 import '@fontsource/ibm-plex-sans-arabic/600.css'
 import '@fontsource/ibm-plex-sans-arabic/700.css'
 import App from './App.jsx'
-import { langFromPath } from './seo'
+import { langFromPath, pageFromPath } from './seo'
 import './index.css'
 
 const root = document.getElementById('root')
 const app = (
   <React.StrictMode>
-    <App initialLang={langFromPath(window.location.pathname)} />
+    <App initialLang={langFromPath(window.location.pathname)} page={pageFromPath(window.location.pathname)} />
   </React.StrictMode>
 )
 

@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { EnvelopeSimple, WhatsappLogo, Phone, CheckCircle, WarningCircle, ArrowRight } from '@phosphor-icons/react'
 import Reveal from '../components/Reveal'
 import { LangContext } from '../App'
+import { pagePath } from '../seo'
 
 const EMAIL = 'younan.n@gmail.com'
 const PHONE_DISPLAY = '+972 50-659-8192'
@@ -10,7 +11,7 @@ const PHONE_RAW = '+972506598192'
 const WHATSAPP = '972506598192'
 
 export default function Contact() {
-  const { t } = useContext(LangContext)
+  const { t, lang } = useContext(LangContext)
   const c = t.contact
   const [status, setStatus] = useState('idle')
 
@@ -128,6 +129,10 @@ export default function Contact() {
                 <button type="submit" disabled={status === 'sending'} className="btn btn-primary w-full disabled:cursor-wait disabled:opacity-70">
                   {status === 'sending' ? c.sending : c.submit}
                 </button>
+                <p className="text-xs leading-relaxed text-ink-3">
+                  {c.privacyNote}{' '}
+                  <a href={pagePath(lang, 'privacy')} className="underline underline-offset-2 hover:text-ink">{c.privacyLink}</a>
+                </p>
               </motion.form>
             )}
           </AnimatePresence>

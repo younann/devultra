@@ -1,6 +1,7 @@
 export const translations = {
   en: {
     dir: 'ltr',
+    a11y: { skip: 'Skip to content', pause: 'Pause logo animation', play: 'Play logo animation', statement: 'Accessibility statement', privacy: 'Privacy policy' },
     nav: {
       services: 'Services',
       ai: 'AI',
@@ -139,6 +140,8 @@ export const translations = {
       messagePlaceholder: 'A few lines about your business and what you want to achieve',
       submit: 'Send message',
       sending: 'Sending...',
+      privacyNote: 'We use your details only to reply to your enquiry. Giving them is voluntary, and without them we cannot get back to you. Messages are delivered through Formspree (USA). You may ask to see, correct or delete your details.',
+      privacyLink: 'Privacy policy',
       successTitle: 'Message sent.',
       successBody: 'Thank you. We will get back to you within one business day.',
       sendAnother: 'Send another message',
@@ -159,6 +162,7 @@ export const translations = {
 
   he: {
     dir: 'rtl',
+    a11y: { skip: 'דילוג לתוכן', pause: 'עצירת אנימציית הלוגואים', play: 'הפעלת אנימציית הלוגואים', statement: 'הצהרת נגישות', privacy: 'מדיניות פרטיות' },
     nav: {
       services: 'שירותים',
       ai: 'AI',
@@ -297,6 +301,8 @@ export const translations = {
       messagePlaceholder: 'כמה שורות על העסק ועל מה שתרצו להשיג',
       submit: 'שליחת הודעה',
       sending: 'שולח...',
+      privacyNote: 'נשתמש בפרטים רק כדי לחזור אליכם בנוגע לפנייה. מסירתם אינה חובה, אבל בלעדיהם לא נוכל לחזור אליכם. ההודעות נשלחות דרך Formspree (ארה״ב). אפשר לבקש לעיין בפרטים, לתקן או למחוק אותם.',
+      privacyLink: 'מדיניות הפרטיות',
       successTitle: 'ההודעה נשלחה.',
       successBody: 'תודה. נחזור אליכם תוך יום עסקים.',
       sendAnother: 'שליחת הודעה נוספת',
@@ -317,6 +323,7 @@ export const translations = {
 
   ar: {
     dir: 'rtl',
+    a11y: { skip: 'تخطي إلى المحتوى', pause: 'إيقاف حركة الشعارات', play: 'تشغيل حركة الشعارات', statement: 'بيان إمكانية الوصول', privacy: 'سياسة الخصوصية' },
     nav: {
       services: 'الخدمات',
       ai: 'الذكاء الاصطناعي',
@@ -455,6 +462,8 @@ export const translations = {
       messagePlaceholder: 'بضعة أسطر عن عملك وما تريد تحقيقه',
       submit: 'إرسال الرسالة',
       sending: 'جارٍ الإرسال...',
+      privacyNote: 'نستخدم بياناتك فقط للرد على استفسارك. تقديمها ليس إلزامياً، لكن بدونها لا يمكننا الرد عليك. تُرسل الرسائل عبر Formspree (الولايات المتحدة). يمكنك طلب الاطلاع على بياناتك أو تصحيحها أو حذفها.',
+      privacyLink: 'سياسة الخصوصية',
       successTitle: 'تم إرسال الرسالة.',
       successBody: 'شكراً لك. سنعود إليك خلال يوم عمل واحد.',
       sendAnother: 'إرسال رسالة أخرى',
