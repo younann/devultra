@@ -1,4 +1,4 @@
-import React, { useEffect, createContext } from 'react'
+import React, { useEffect, useState, createContext } from 'react'
 import { MotionConfig } from 'framer-motion'
 import Navbar from './components/Navbar'
 import Hero from './sections/Hero'
@@ -12,6 +12,7 @@ import FAQ from './sections/FAQ'
 import Contact from './sections/Contact'
 import Footer from './components/Footer'
 import WhatsAppButton from './components/WhatsAppButton'
+import AccessibilityMenu from './components/AccessibilityMenu'
 import { translations } from './translations'
 import { PATHS, pageMeta, pagePath } from './seo'
 import LegalPage from './sections/LegalPage'
@@ -22,6 +23,7 @@ function App({ initialLang, page = 'home' }) {
   const lang = initialLang
   // Section links point home from other pages
   const home = page === 'home' ? '' : PATHS[lang]
+  const [still, setStill] = useState(false)
   const t = translations[lang]
 
   // Each language is its own page
@@ -37,7 +39,7 @@ function App({ initialLang, page = 'home' }) {
 
   return (
     <LangContext.Provider value={{ lang, setLang, t, page, home }}>
-      <MotionConfig reducedMotion="user">
+      <MotionConfig reducedMotion={still ? 'always' : 'user'}>
         <a
           href="#main"
           className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:start-3 focus:z-[100] focus:rounded-full focus:bg-ink focus:px-4 focus:py-2 focus:text-bg"
@@ -64,6 +66,7 @@ function App({ initialLang, page = 'home' }) {
         </main>
         <Footer />
         <WhatsAppButton />
+        <AccessibilityMenu onStillChange={setStill} />
       </MotionConfig>
     </LangContext.Provider>
   )

@@ -23,7 +23,8 @@ export const legal = {
           'ניגודיות צבעים העומדת ביחס 4.5:1 לפחות לטקסט רגיל.',
           'טופס יצירת קשר עם תוויות לכל שדה, השלמה אוטומטית והודעות שגיאה המוקראות לקוראי מסך.',
           'כפתור לעצירת פס הלוגואים הנע, והפסקת אנימציות אצל מי שהגדיר במכשיר "הפחתת תנועה".',
-          'אפשר להגדיל את הטקסט עד 200% בלי לאבד תוכן או פונקציונליות.'
+          'אפשר להגדיל את הטקסט עד 200% בלי לאבד תוכן או פונקציונליות.',
+          'תפריט נגישות (הכפתור הכחול בפינת המסך) להגדלת טקסט, ניגודיות חזקה, הדגשת קישורים, עצירת אנימציות וגופן קריא. ההגדרות נשמרות בדפדפן שלכם.'
         ] },
         { h: 'איך נבדק האתר', p: ['האתר נבדק בכלי בדיקה אוטומטיים (axe-core) ובבדיקות ידניות של ניווט במקלדת, בדפדפן Chrome, במחשב ובתצוגת נייד.'] },
         { h: 'מגבלות ידועות', list: [
@@ -47,7 +48,8 @@ export const legal = {
           'Colour contrast of at least 4.5:1 for normal text.',
           'A contact form with a label on every field, autocomplete, and error messages announced to screen readers.',
           'A button to pause the moving logo strip, and animations turned off for anyone who has set "reduce motion" on their device.',
-          'Text can be zoomed to 200% without losing content or functionality.'
+          'Text can be zoomed to 200% without losing content or functionality.',
+          'An accessibility menu (the blue button in the corner of the screen) for larger text, stronger contrast, highlighted links, stopping animations and a readable font. Your settings are saved in your browser.'
         ] },
         { h: 'How the site was tested', p: ['The site was checked with automated testing tools (axe-core) and manual keyboard navigation checks, in Chrome on desktop and in a mobile viewport.'] },
         { h: 'Known limitations', list: [
@@ -71,7 +73,8 @@ export const legal = {
           'تباين ألوان بنسبة 4.5:1 على الأقل للنص العادي.',
           'نموذج تواصل مع تسمية لكل حقل، وإكمال تلقائي، ورسائل خطأ تُقرأ لقارئات الشاشة.',
           'زر لإيقاف شريط الشعارات المتحرك، وإيقاف الحركة لمن فعّل خيار "تقليل الحركة" في جهازه.',
-          'يمكن تكبير النص حتى 200% دون فقدان المحتوى أو الوظائف.'
+          'يمكن تكبير النص حتى 200% دون فقدان المحتوى أو الوظائف.',
+          'قائمة إمكانية الوصول (الزر الأزرق في زاوية الشاشة) لتكبير النص، وتباين أقوى، وإبراز الروابط، وإيقاف الحركة، وخط سهل القراءة. تُحفظ الإعدادات في متصفحك.'
         ] },
         { h: 'كيف تم فحص الموقع', p: ['تم فحص الموقع بأدوات فحص آلية (axe-core) وبفحوصات يدوية للتنقل بلوحة المفاتيح، في متصفح Chrome على الحاسوب وبعرض الهاتف.'] },
         { h: 'قيود معروفة', list: [

@@ -1,7 +1,8 @@
 export const translations = {
   en: {
     dir: 'ltr',
-    a11y: { skip: 'Skip to content', pause: 'Pause logo animation', play: 'Play logo animation', statement: 'Accessibility statement', privacy: 'Privacy policy' },
+    a11y: { skip: 'Skip to content', pause: 'Pause logo animation', play: 'Play logo animation', statement: 'Accessibility statement', privacy: 'Privacy policy',
+      menu: { open: 'Accessibility menu', title: 'Accessibility', close: 'Close accessibility menu', size: 'Text size', smaller: 'Smaller text', larger: 'Larger text', contrast: 'Stronger contrast', links: 'Highlight links', still: 'Stop animations', font: 'Readable font', reset: 'Reset' } },
     nav: {
       services: 'Services',
       ai: 'AI',
@@ -162,7 +163,8 @@ export const translations = {
 
   he: {
     dir: 'rtl',
-    a11y: { skip: 'דילוג לתוכן', pause: 'עצירת אנימציית הלוגואים', play: 'הפעלת אנימציית הלוגואים', statement: 'הצהרת נגישות', privacy: 'מדיניות פרטיות' },
+    a11y: { skip: 'דילוג לתוכן', pause: 'עצירת אנימציית הלוגואים', play: 'הפעלת אנימציית הלוגואים', statement: 'הצהרת נגישות', privacy: 'מדיניות פרטיות',
+      menu: { open: 'תפריט נגישות', title: 'נגישות', close: 'סגירת תפריט הנגישות', size: 'גודל טקסט', smaller: 'הקטנת טקסט', larger: 'הגדלת טקסט', contrast: 'ניגודיות חזקה', links: 'הדגשת קישורים', still: 'עצירת אנימציות', font: 'גופן קריא', reset: 'איפוס' } },
     nav: {
       services: 'שירותים',
       ai: 'AI',
@@ -323,7 +325,8 @@ export const translations = {
 
   ar: {
     dir: 'rtl',
-    a11y: { skip: 'تخطي إلى المحتوى', pause: 'إيقاف حركة الشعارات', play: 'تشغيل حركة الشعارات', statement: 'بيان إمكانية الوصول', privacy: 'سياسة الخصوصية' },
+    a11y: { skip: 'تخطي إلى المحتوى', pause: 'إيقاف حركة الشعارات', play: 'تشغيل حركة الشعارات', statement: 'بيان إمكانية الوصول', privacy: 'سياسة الخصوصية',
+      menu: { open: 'قائمة إمكانية الوصول', title: 'إمكانية الوصول', close: 'إغلاق قائمة إمكانية الوصول', size: 'حجم النص', smaller: 'تصغير النص', larger: 'تكبير النص', contrast: 'تباين أقوى', links: 'إبراز الروابط', still: 'إيقاف الحركة', font: 'خط سهل القراءة', reset: 'إعادة الضبط' } },
     nav: {
       services: 'الخدمات',
       ai: 'الذكاء الاصطناعي',
