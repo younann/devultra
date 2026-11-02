@@ -25,7 +25,9 @@ export default function Portfolio() {
             className="overflow-hidden rounded-[20px] border border-line bg-surface-2 p-2 sm:p-3"
           >
             <img
-              src="/projects/calma-by-lamar.png"
+              src="/projects/calma-by-lamar-1600.webp"
+              srcSet="/projects/calma-by-lamar-800.webp 800w, /projects/calma-by-lamar-1600.webp 1600w"
+              sizes="(min-width: 1280px) 1200px, 100vw"
               alt="Calma by Lamar store: homepage with handmade decor products"
               width="1912"
               height="927"

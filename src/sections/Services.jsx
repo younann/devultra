@@ -59,8 +59,8 @@ export default function Services() {
             </div>
             <div className="mt-auto ps-7">
               <img
-                src="/projects/calma-by-lamar.png"
-                alt="Calma by Lamar online store homepage"
+                src="/projects/calma-by-lamar-800.webp"
+                alt="Calma by Lamar store preview: product catalog page"
                 width="1912"
                 height="927"
                 loading="lazy"

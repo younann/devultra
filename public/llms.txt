@@ -1,0 +1,27 @@
+# DevUltra
+
+> DevUltra is a web, app and AI studio in Israel, led by software engineer Younan Nwesre. It builds websites, online stores, web and mobile apps, and AI assistants (WhatsApp and website chatbots) for Israeli businesses, in Hebrew, Arabic and English. You talk directly to the developer who writes the code.
+
+## Services
+
+- Websites and online stores: fast, multilingual sites built for calls, orders and bookings. A landing page takes 1-2 weeks; a full site or store 3-6 weeks.
+- AI assistants and automation: assistants trained on a business's services, prices and policies that answer customers 24/7 on WhatsApp or the website, book appointments, follow up on leads and hand off to a person. Most go live in 2-3 weeks.
+- Web and mobile apps: customer portals, dashboards, iOS and Android apps.
+- UI/UX design.
+- Hosting and ongoing care: hosting, backups, updates and monitoring.
+
+## How it works
+
+Free intro call, then a fixed written quote, weekly previews during the build, and support after launch. The client owns the code, domain and accounts.
+
+## Pages
+
+- [Hebrew (main)](https://devultra.net/)
+- [English](https://devultra.net/en/)
+- [Arabic](https://devultra.net/ar/)
+
+## Contact
+
+- Phone and WhatsApp: +972-50-659-8192
+- Email: younan.n@gmail.com
+- Instagram: https://www.instagram.com/dev.ultra.26/

@@ -8,10 +8,16 @@ import '@fontsource/ibm-plex-sans-arabic/500.css'
 import '@fontsource/ibm-plex-sans-arabic/600.css'
 import '@fontsource/ibm-plex-sans-arabic/700.css'
 import App from './App.jsx'
+import { langFromPath } from './seo'
 import './index.css'
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+const root = document.getElementById('root')
+const app = (
   <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+    <App initialLang={langFromPath(window.location.pathname)} />
+  </React.StrictMode>
 )
+
+// Prerendered pages hydrate, dev renders fresh
+if (root.firstElementChild) ReactDOM.hydrateRoot(root, app)
+else ReactDOM.createRoot(root).render(app)

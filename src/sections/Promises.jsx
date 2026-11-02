@@ -41,7 +41,7 @@ export default function Promises() {
                 {LOGOS.map(([slug, name]) => (
                   <li key={slug}>
                     <img
-                      src={`https://cdn.simpleicons.org/${slug}/9a9dc4`}
+                      src={`/icons/${slug}.svg`}
                       alt={dup === 0 ? name : ''}
                       width="28"
                       height="28"

@@ -1,4 +1,4 @@
-import React, { useEffect, useState, createContext } from 'react'
+import React, { useEffect, createContext } from 'react'
 import { MotionConfig } from 'framer-motion'
 import Navbar from './components/Navbar'
 import Hero from './sections/Hero'
@@ -13,37 +13,23 @@ import Contact from './sections/Contact'
 import Footer from './components/Footer'
 import WhatsAppButton from './components/WhatsAppButton'
 import { translations } from './translations'
+import { META, PATHS } from './seo'
 
 export const LangContext = createContext()
 
-const LANGS = ['en', 'he', 'ar']
-
-const descriptions = {
-  en: 'DevUltra builds websites, apps and AI assistants for Israeli businesses. Fixed price, weekly previews, support in Hebrew, Arabic and English.',
-  he: 'DevUltra בונה אתרים, אפליקציות ועוזרי AI לעסקים בישראל. מחיר קבוע, עדכון שבועי, ליווי בעברית, ערבית ואנגלית.',
-  ar: 'DevUltra تبني مواقع وتطبيقات ومساعدين أذكياء للأعمال. سعر ثابت، متابعة أسبوعية، ودعم بالعربية والعبرية والإنجليزية.'
-}
-
-function getInitialLang() {
-  const urlLang = new URLSearchParams(window.location.search).get('lang')
-  return LANGS.includes(urlLang) ? urlLang : 'en'
-}
-
-function App() {
-  const [lang, setLangState] = useState(getInitialLang)
+function App({ initialLang }) {
+  const lang = initialLang
   const t = translations[lang]
 
+  // Each language is its own page
   const setLang = (next) => {
-    setLangState(next)
-    const url = new URL(window.location.href)
-    url.searchParams.set('lang', next)
-    window.history.replaceState({}, '', url)
+    if (next !== lang) window.location.assign(PATHS[next])
   }
 
   useEffect(() => {
     document.documentElement.dir = t.dir
     document.documentElement.lang = lang
-    document.querySelector('meta[name="description"]')?.setAttribute('content', descriptions[lang])
+    document.title = META[lang].title
   }, [lang, t.dir])
 
   return (

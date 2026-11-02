@@ -12,7 +12,7 @@ export const translations = {
       close: 'Close'
     },
     hero: {
-      eyebrow: 'Websites, apps and AI for growing businesses',
+      eyebrow: 'Websites, apps and AI for Israeli businesses',
       titleA: 'Websites and AI tools that',
       titleEm: 'win you clients.',
       sub: 'We design and build websites, apps and AI assistants for Israeli businesses. Clear price, fast delivery, real support.',
@@ -39,7 +39,7 @@ export const translations = {
     ],
     stack: 'Built with proven tools used by the best product teams',
     services: {
-      title: 'Everything your business needs online.',
+      title: 'Websites, apps and AI for your business.',
       items: {
         ai: { title: 'AI assistants and automation', desc: 'Chatbots that answer customers, book meetings and qualify leads. Automations that remove repetitive office work.' },
         web: { title: 'Websites and online stores', desc: 'Fast, multilingual sites built to turn visitors into calls, orders and bookings.' },
@@ -170,10 +170,10 @@ export const translations = {
       close: 'סגירה'
     },
     hero: {
-      eyebrow: 'אתרים, אפליקציות ו-AI לעסקים צומחים',
-      titleA: 'אתרים וכלי AI',
+      eyebrow: 'בניית אתרים, אפליקציות ו-AI לעסקים',
+      titleA: 'בניית אתרים וכלי AI',
       titleEm: 'שמביאים לקוחות.',
-      sub: 'אנחנו מעצבים ובונים אתרים, אפליקציות ועוזרי AI לעסקים בישראל. מחיר ברור, מסירה מהירה, ליווי אמיתי.',
+      sub: 'אנחנו מעצבים ובונים אתרים, חנויות אינטרנטיות, אפליקציות וצ׳אטבוטים AI לעסקים בישראל. מחיר ברור, מסירה מהירה, ליווי אמיתי.',
       cta2: 'לעבודות שלנו'
     },
     chat: {
@@ -197,11 +197,11 @@ export const translations = {
     ],
     stack: 'בנוי עם הכלים המוכחים של צוותי המוצר הטובים בעולם',
     services: {
-      title: 'כל מה שהעסק שלכם צריך אונליין.',
+      title: 'בניית אתרים, פיתוח אפליקציות ו-AI לעסקים.',
       items: {
-        ai: { title: 'עוזרי AI ואוטומציה', desc: 'צ׳אטבוטים שעונים ללקוחות, קובעים פגישות ומסננים לידים. אוטומציות שחוסכות עבודה משרדית חוזרת.' },
-        web: { title: 'אתרים וחנויות אונליין', desc: 'אתרים מהירים ורב-לשוניים שהופכים גולשים לשיחות, הזמנות ותורים.' },
-        apps: { title: 'אפליקציות ווב ומובייל', desc: 'פורטלים ללקוחות, דשבורדים ואפליקציות ל-iOS ול-Android.' },
+        ai: { title: 'צ׳אטבוט AI ואוטומציה לעסקים', desc: 'צ׳אטבוטים שעונים ללקוחות, קובעים פגישות ומסננים לידים. אוטומציות שחוסכות עבודה משרדית חוזרת.' },
+        web: { title: 'בניית אתרים וחנויות אינטרנטיות', desc: 'אתרים מהירים ורב-לשוניים שהופכים גולשים לשיחות, הזמנות ותורים.' },
+        apps: { title: 'פיתוח אפליקציות ווב ומובייל', desc: 'פורטלים ללקוחות, דשבורדים ואפליקציות ל-iOS ול-Android.' },
         design: { title: 'עיצוב UI/UX', desc: 'ממשקים ברורים שהלקוחות מבינים כבר בפעם הראשונה.' },
         care: { title: 'אחסון ותחזוקה שוטפת', desc: 'אחסון מאובטח, גיבויים, עדכונים וניטור, כדי ששום דבר לא יישבר בשקט.' }
       }
@@ -328,8 +328,8 @@ export const translations = {
       close: 'إغلاق'
     },
     hero: {
-      eyebrow: 'مواقع وتطبيقات وذكاء اصطناعي للأعمال النامية',
-      titleA: 'مواقع وأدوات ذكاء اصطناعي',
+      eyebrow: 'تصميم مواقع وتطبيقات وذكاء اصطناعي للمصالح',
+      titleA: 'تصميم مواقع وأدوات ذكاء اصطناعي',
       titleEm: 'تجلب لك العملاء.',
       sub: 'نصمم ونبني مواقع وتطبيقات ومساعدين أذكياء للأعمال في البلاد. سعر واضح، تسليم سريع، ودعم حقيقي.',
       cta2: 'شاهد أعمالنا'
@@ -355,11 +355,11 @@ export const translations = {
     ],
     stack: 'مبني بأدوات موثوقة تستخدمها أفضل فرق المنتجات',
     services: {
-      title: 'كل ما يحتاجه عملك على الإنترنت.',
+      title: 'تصميم مواقع وتطوير تطبيقات وذكاء اصطناعي لعملك.',
       items: {
-        ai: { title: 'مساعدون أذكياء وأتمتة', desc: 'روبوتات محادثة ترد على العملاء وتحجز المواعيد وتفرز العملاء المحتملين. أتمتة توفر العمل المكتبي المتكرر.' },
-        web: { title: 'مواقع ومتاجر إلكترونية', desc: 'مواقع سريعة ومتعددة اللغات تحول الزوار إلى مكالمات وطلبات وحجوزات.' },
-        apps: { title: 'تطبيقات ويب وجوال', desc: 'بوابات للعملاء ولوحات تحكم وتطبيقات لـ iOS وAndroid.' },
+        ai: { title: 'بوت واتساب ذكي وأتمتة للمصالح', desc: 'روبوتات محادثة ترد على العملاء وتحجز المواعيد وتفرز العملاء المحتملين. أتمتة توفر العمل المكتبي المتكرر.' },
+        web: { title: 'تصميم مواقع ومتاجر إلكترونية', desc: 'مواقع سريعة ومتعددة اللغات تحول الزوار إلى مكالمات وطلبات وحجوزات.' },
+        apps: { title: 'تطوير تطبيقات ويب وجوال', desc: 'بوابات للعملاء ولوحات تحكم وتطبيقات لـ iOS وAndroid.' },
         design: { title: 'تصميم UI/UX', desc: 'واجهات واضحة يفهمها عملاؤك من المرة الأولى.' },
         care: { title: 'استضافة وصيانة مستمرة', desc: 'استضافة آمنة ونسخ احتياطي وتحديثات ومراقبة، حتى لا يتعطل شيء بصمت.' }
       }
