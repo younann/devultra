@@ -1,259 +1,160 @@
-import React, { useState, useEffect, useContext } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { Menu, X, Globe } from 'lucide-react'
+import React, { useState, useEffect, useContext, useRef } from 'react'
+import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'framer-motion'
+import { List, X, Translate, Check } from '@phosphor-icons/react'
 import { LangContext } from '../App'
 
-const Navbar = () => {
+const LANG_NAMES = { en: 'English', he: 'עברית', ar: 'العربية' }
+
+export default function Navbar() {
   const { lang, setLang, t } = useContext(LangContext)
   const [scrolled, setScrolled] = useState(false)
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const [langMenuOpen, setLangMenuOpen] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
+  const [langOpen, setLangOpen] = useState(false)
+  const langRef = useRef(null)
+  const { scrollY } = useScroll()
+
+  useMotionValueEvent(scrollY, 'change', (y) => setScrolled(y > 12))
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50)
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
+    if (!langOpen) return
+    const onDown = (e) => { if (!langRef.current?.contains(e.target)) setLangOpen(false) }
+    document.addEventListener('mousedown', onDown)
+    return () => document.removeEventListener('mousedown', onDown)
+  }, [langOpen])
+
+  useEffect(() => {
+    const onKey = (e) => { if (e.key === 'Escape') { setLangOpen(false); setMenuOpen(false) } }
+    document.addEventListener('keydown', onKey)
+    return () => document.removeEventListener('keydown', onKey)
   }, [])
 
-  const navLinks = [
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? 'hidden' : ''
+  }, [menuOpen])
+
+  const links = [
     { name: t.nav.services, href: '#services' },
-    { name: t.nav.portfolio, href: '#portfolio' },
-    { name: t.nav.contact, href: '#contact' },
+    { name: t.nav.ai, href: '#ai' },
+    { name: t.nav.work, href: '#portfolio' },
+    { name: t.nav.process, href: '#process' },
+    { name: t.nav.faq, href: '#faq' }
   ]
 
-  const toggleLang = (l) => {
-    setLang(l)
-    setLangMenuOpen(false)
-  }
+  const chooseLang = (l) => { setLang(l); setLangOpen(false) }
 
   return (
-    <nav
-      className={scrolled ? 'nav-floating' : 'nav-fixed'}
-      style={{
-        paddingLeft: '5%',
-        paddingRight: '5%',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between'
-      }}
+    <header
+      className={`night fixed inset-x-0 top-0 z-50 transition-[background-color,border-color] duration-300 border-b ${
+        scrolled ? '!bg-[#080a1f]/95 backdrop-blur-xl border-line' : '!bg-transparent border-transparent'
+      }`}
     >
-      <motion.div
-        initial={{ opacity: 0, x: -20 }}
-        animate={{ opacity: 1, x: 0 }}
-        style={{ fontSize: 'clamp(1.2rem, 3vw, 1.5rem)', fontWeight: 800, letterSpacing: '-0.05em' }}
-      >
-        DEV<span className="text-gradient">ULTRA</span>
-      </motion.div>
+      <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+        <a href="#main" className="flex items-center" aria-label="DevUltra home">
+          <img src="/brand/logo-full-light.png" alt="DevUltra" width="188" height="30" className="h-[30px] w-auto" />
+        </a>
 
-      {/* Desktop Menu */}
-      <div className="desktop-nav" style={{ display: 'flex', alignItems: 'center', gap: '30px' }}>
-        {navLinks.map((link, i) => (
-          <motion.a
-            key={link.name}
-            href={link.href}
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: i * 0.1 }}
-            style={{
-              textDecoration: 'none',
-              color: 'var(--text-secondary)',
-              fontSize: '0.9rem',
-              fontWeight: 600,
-              transition: 'color 0.3s ease'
-            }}
-            onMouseEnter={(e) => e.target.style.color = 'var(--text-primary)'}
-            onMouseLeave={(e) => e.target.style.color = 'var(--text-secondary)'}
-          >
-            {link.name}
-          </motion.a>
-        ))}
-
-        {/* Language Switcher */}
-        <div style={{ position: 'relative' }}>
-          <button
-            onClick={() => setLangMenuOpen(!langMenuOpen)}
-            style={{
-              background: 'transparent',
-              border: 'none',
-              color: 'var(--text-secondary)',
-              cursor: 'pointer',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '5px',
-              fontSize: '0.9rem',
-              fontWeight: 600
-            }}
-          >
-            <Globe size={18} />
-            <span style={{ textTransform: 'uppercase' }}>{lang}</span>
-          </button>
-          <AnimatePresence>
-            {langMenuOpen && (
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 10 }}
-                style={{
-                  position: 'absolute',
-                  top: '100%',
-                  right: 0,
-                  marginTop: '10px',
-                  background: 'var(--bg-secondary)',
-                  border: '1px solid var(--glass-border)',
-                  borderRadius: '10px',
-                  padding: '10px',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: '5px',
-                  zIndex: 100
-                }}
-              >
-                {['en', 'ar', 'he'].map(l => (
-                  <button
-                    key={l}
-                    onClick={() => toggleLang(l)}
-                    style={{
-                      background: lang === l ? 'var(--accent-primary)' : 'transparent',
-                      color: lang === l ? '#fff' : 'var(--text-secondary)',
-                      border: 'none',
-                      padding: '8px 15px',
-                      borderRadius: '5px',
-                      cursor: 'pointer',
-                      textAlign: 'left',
-                      fontSize: '0.85rem',
-                      fontWeight: 600
-                    }}
-                  >
-                    {l === 'en' ? 'English' : l === 'ar' ? 'العربية' : 'עברית'}
-                  </button>
-                ))}
-              </motion.div>
-            )}
-          </AnimatePresence>
+        <div className="hidden items-center gap-1 lg:flex">
+          {links.map((l) => (
+            <a
+              key={l.href}
+              href={l.href}
+              className="rounded-full px-3.5 py-2 text-sm font-medium text-ink-2 transition-colors duration-200 hover:text-ink"
+            >
+              {l.name}
+            </a>
+          ))}
         </div>
 
-        <motion.button
-          onClick={() => window.location.href = "#contact"}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          style={{
-            padding: '10px 24px',
-            borderRadius: '100px',
-            background: 'var(--text-primary)',
-            color: 'var(--bg-primary)',
-            border: 'none',
-            fontWeight: 700,
-            cursor: 'pointer',
-            fontSize: '0.9rem'
-          }}
-        >
-          {t.nav.cta}
-        </motion.button>
-      </div>
-
-      {/* Mobile Toggle */}
-      <div
-        className="mobile-toggle"
-        onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-        style={{ cursor: 'pointer', zIndex: 100 }}
-      >
-        {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-      </div>
-
-      {/* Mobile Menu */}
-      <AnimatePresence>
-        {mobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, x: t.dir === 'rtl' ? '-100%' : '100%' }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: t.dir === 'rtl' ? '-100%' : '100%' }}
-            transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-            style={{
-              position: 'fixed',
-              top: 0,
-              right: t.dir === 'rtl' ? 'auto' : 0,
-              left: t.dir === 'rtl' ? 0 : 'auto',
-              width: '80%',
-              height: '100vh',
-              background: 'var(--bg-secondary)',
-              zIndex: 90,
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'center',
-              alignItems: 'center',
-              gap: '30px',
-              borderLeft: t.dir === 'rtl' ? 'none' : '1px solid var(--glass-border)',
-              borderRight: t.dir === 'rtl' ? '1px solid var(--glass-border)' : 'none'
-            }}
-          >
-            <div style={{ display: 'flex', gap: '15px', marginBottom: '20px' }}>
-              {['en', 'ar', 'he'].map(l => (
-                <button
-                  key={l}
-                  onClick={() => toggleLang(l)}
-                  style={{
-                    background: 'transparent',
-                    color: lang === l ? 'var(--accent-primary)' : 'var(--text-secondary)',
-                    border: lang === l ? '1px solid var(--accent-primary)' : '1px solid transparent',
-                    padding: '8px 15px',
-                    borderRadius: '5px',
-                    cursor: 'pointer',
-                    fontSize: '0.9rem',
-                    fontWeight: 700
-                  }}
+        <div className="flex items-center gap-2">
+          <div ref={langRef} className="relative">
+            <button
+              onClick={() => setLangOpen((o) => !o)}
+              aria-expanded={langOpen}
+              aria-haspopup="menu"
+              aria-label="Change language"
+              className="btn btn-sm btn-secondary !px-3 gap-1.5"
+            >
+              <Translate size={18} weight="regular" />
+              <span className="text-xs font-semibold uppercase">{lang}</span>
+            </button>
+            <AnimatePresence>
+              {langOpen && (
+                <motion.div
+                  role="menu"
+                  initial={{ opacity: 0, scale: 0.96, y: -4 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.98, transition: { duration: 0.12 } }}
+                  transition={{ duration: 0.18, ease: [0.23, 1, 0.32, 1] }}
+                  style={{ transformOrigin: t.dir === 'rtl' ? 'top left' : 'top right' }}
+                  className="card absolute end-0 top-full mt-2 w-40 p-1.5 shadow-[var(--shadow)]"
                 >
-                  {l.toUpperCase()}
-                </button>
+                  {Object.entries(LANG_NAMES).map(([code, name]) => (
+                    <button
+                      key={code}
+                      role="menuitemradio"
+                      aria-checked={lang === code}
+                      onClick={() => chooseLang(code)}
+                      className="flex w-full items-center justify-between rounded-[10px] px-3 py-2 text-sm text-ink-2 transition-colors hover:bg-surface-2 hover:text-ink"
+                    >
+                      {name}
+                      {lang === code && <Check size={16} className="text-accent" />}
+                    </button>
+                  ))}
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+
+          <a href="#contact" className="btn btn-sm btn-primary hidden sm:inline-flex">{t.nav.cta}</a>
+
+          <button
+            onClick={() => setMenuOpen(true)}
+            aria-label={t.nav.menu}
+            aria-expanded={menuOpen}
+            className="btn btn-sm btn-secondary !px-3 lg:hidden"
+          >
+            <List size={20} />
+          </button>
+        </div>
+      </nav>
+
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            role="dialog"
+            aria-modal="true"
+            aria-label={t.nav.menu}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0, transition: { duration: 0.15 } }}
+            transition={{ duration: 0.2 }}
+            className="night fixed inset-0 z-[60] flex flex-col bg-bg px-4 sm:px-6 lg:hidden"
+          >
+            <div className="flex h-16 items-center justify-between">
+              <img src="/brand/logo-full-light.png" alt="DevUltra" width="188" height="30" className="h-[30px] w-auto" />
+              <button onClick={() => setMenuOpen(false)} aria-label={t.nav.close} className="btn btn-sm btn-secondary !px-3">
+                <X size={20} />
+              </button>
+            </div>
+            <div className="mt-6 flex flex-col">
+              {links.map((l, i) => (
+                <motion.a
+                  key={l.href}
+                  href={l.href}
+                  onClick={() => setMenuOpen(false)}
+                  initial={{ opacity: 0, transform: 'translateY(8px)' }}
+                  animate={{ opacity: 1, transform: 'translateY(0px)' }}
+                  transition={{ delay: 0.04 * i, duration: 0.3, ease: [0.23, 1, 0.32, 1] }}
+                  className="border-b border-line py-4 text-2xl font-semibold tracking-tight"
+                >
+                  {l.name}
+                </motion.a>
               ))}
             </div>
-
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                onClick={() => setMobileMenuOpen(false)}
-                style={{
-                  fontSize: '1.5rem',
-                  fontWeight: 700,
-                  textDecoration: 'none',
-                  color: 'var(--text-primary)'
-                }}
-              >
-                {link.name}
-              </a>
-            ))}
-
-            <button
-              onClick={() => setMobileMenuOpen(false)}
-              style={{
-                marginTop: '20px',
-                padding: '15px 40px',
-                borderRadius: '100px',
-                background: 'var(--text-primary)',
-                color: 'var(--bg-primary)',
-                border: 'none',
-                fontWeight: 700,
-                cursor: 'pointer',
-                fontSize: '1rem'
-              }}
-            >
-              {t.nav.cta}
-            </button>
+            <a href="#contact" onClick={() => setMenuOpen(false)} className="btn btn-primary mt-8 w-full">{t.nav.cta}</a>
           </motion.div>
         )}
       </AnimatePresence>
-
-      <style>{`
-        @media (max-width: 768px) {
-          .desktop-nav { display: none !important; }
-          .mobile-toggle { display: block; }
-        }
-        @media (min-width: 769px) {
-          .mobile-toggle { display: none; }
-        }
-      `}</style>
-    </nav>
+    </header>
   )
 }
-
-export default Navbar

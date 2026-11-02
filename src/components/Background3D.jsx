@@ -1,6 +1,7 @@
-import React, { useRef, useMemo } from 'react'
+import React, { useRef, useMemo, useContext } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import * as THREE from 'three'
+import { LangContext } from '../App'
 
 const Particles = ({ count = 5000 }) => {
   const points = useRef()
@@ -12,7 +13,7 @@ const Particles = ({ count = 5000 }) => {
       positions[i * 3] = (Math.random() - 0.5) * 10
       positions[i * 3 + 1] = (Math.random() - 0.5) * 10
       positions[i * 3 + 2] = (Math.random() - 0.5) * 10
-      
+
       const mixedColor = new THREE.Color('#3b82f6').lerp(new THREE.Color('#8b5cf6'), Math.random())
       colors[i * 3] = mixedColor.r
       colors[i * 3 + 1] = mixedColor.g
@@ -25,8 +26,6 @@ const Particles = ({ count = 5000 }) => {
     const { clock, mouse } = state
     points.current.rotation.y = clock.getElapsedTime() * 0.05
     points.current.rotation.x = clock.getElapsedTime() * 0.03
-    
-    // Slight parallax with mouse
     points.current.position.x = THREE.MathUtils.lerp(points.current.position.x, mouse.x * 0.5, 0.1)
     points.current.position.y = THREE.MathUtils.lerp(points.current.position.y, mouse.y * 0.5, 0.1)
   })
@@ -58,7 +57,26 @@ const Particles = ({ count = 5000 }) => {
   )
 }
 
+const StaticGradient = () => (
+  <div style={{ position: 'absolute', inset: 0, zIndex: -1, pointerEvents: 'none' }}>
+    <div style={{
+      position: 'absolute', top: '25%', left: '25%', width: 300, height: 300,
+      borderRadius: '50%', background: 'rgba(59,130,246,0.1)', filter: 'blur(100px)'
+    }} />
+    <div style={{
+      position: 'absolute', bottom: '25%', right: '25%', width: 250, height: 250,
+      borderRadius: '50%', background: 'rgba(139,92,246,0.1)', filter: 'blur(100px)'
+    }} />
+  </div>
+)
+
 const Background3D = () => {
+  const { prefersReducedMotion } = useContext(LangContext)
+
+  if (prefersReducedMotion) {
+    return <StaticGradient />
+  }
+
   return (
     <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: -1, pointerEvents: 'none' }}>
       <Canvas camera={{ position: [0, 0, 5], fov: 75 }}>

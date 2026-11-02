@@ -1,91 +1,56 @@
 import React, { useContext } from 'react'
+import { InstagramLogo, WhatsappLogo, EnvelopeSimple } from '@phosphor-icons/react'
 import { LangContext } from '../App'
 
-const Footer = () => {
+export default function Footer() {
   const { t } = useContext(LangContext)
-
-  const linkStyle = {
-    color: 'var(--text-secondary)',
-    textDecoration: 'none',
-    fontSize: 'clamp(0.8rem, 2vw, 0.9rem)',
-    transition: 'color 0.3s ease'
-  }
+  const links = [
+    { name: t.nav.services, href: '#services' },
+    { name: t.nav.ai, href: '#ai' },
+    { name: t.nav.work, href: '#portfolio' },
+    { name: t.nav.process, href: '#process' },
+    { name: t.nav.faq, href: '#faq' }
+  ]
+  const social = [
+    { Icon: InstagramLogo, label: 'Instagram', href: 'https://instagram.com/dev.ultra.26' },
+    { Icon: WhatsappLogo, label: 'WhatsApp', href: 'https://wa.me/972506598192' },
+    { Icon: EnvelopeSimple, label: 'Email', href: 'mailto:younan.n@gmail.com' }
+  ]
 
   return (
-    <footer style={{ padding: 'clamp(50px, 10vw, 80px) 5%', borderTop: '1px solid var(--glass-border)' }}>
-      <div className="footer-container">
-        <div style={{ maxWidth: '350px' }}>
-          <h2 style={{ fontSize: 'clamp(1.2rem, 3vw, 1.5rem)', fontWeight: 800 }}>
-            DEVULTRA<span className="text-gradient">.</span>
-          </h2>
-          <p style={{ color: 'var(--text-secondary)', marginTop: '10px', fontSize: 'clamp(0.85rem, 2vw, 1rem)' }}>
-            {t.footer.desc}
-          </p>
+    <footer className="night aurora">
+      <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+        <div className="flex flex-col justify-between gap-10 md:flex-row md:items-start">
+          <div className="max-w-xs">
+            <img src="/brand/logo-full-light.png" alt="DevUltra" width="176" height="28" className="h-7 w-auto" />
+            <p className="mt-4 text-sm text-ink-2">{t.footer.desc}</p>
+          </div>
+
+          <nav aria-label="Footer" className="flex flex-wrap gap-x-6 gap-y-3">
+            {links.map((l) => (
+              <a key={l.href} href={l.href} className="text-sm text-ink-2 transition-colors hover:text-ink">{l.name}</a>
+            ))}
+          </nav>
+
+          <div className="flex gap-2">
+            {social.map(({ Icon, label, href }) => (
+              <a
+                key={label}
+                href={href}
+                aria-label={label}
+                {...(href.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                className="btn btn-secondary btn-sm !px-0 size-10"
+              >
+                <Icon size={18} />
+              </a>
+            ))}
+          </div>
         </div>
 
-        <div className="footer-links">
-          <div>
-            <h4 style={{ marginBottom: '15px', fontSize: 'clamp(0.9rem, 2vw, 1rem)' }}>{t.footer.social}</h4>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-              <a href="https://instagram.com/dev.ultra.26" target="_blank" rel="noopener noreferrer" style={linkStyle} onMouseEnter={(e) => e.target.style.color = '#fff'} onMouseLeave={(e) => e.target.style.color = 'var(--text-secondary)'}>Instagram</a>
-            </div>
-          </div>
-          <div>
-            <h4 style={{ marginBottom: '15px', fontSize: 'clamp(0.9rem, 2vw, 1rem)' }}>{t.footer.links}</h4>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-              <a href="#services" style={linkStyle} onMouseEnter={(e) => e.target.style.color = '#fff'} onMouseLeave={(e) => e.target.style.color = 'var(--text-secondary)'}>{t.nav.services}</a>
-              <a href="#portfolio" style={linkStyle} onMouseEnter={(e) => e.target.style.color = '#fff'} onMouseLeave={(e) => e.target.style.color = 'var(--text-secondary)'}>{t.nav.portfolio}</a>
-              <a href="#contact" style={linkStyle} onMouseEnter={(e) => e.target.style.color = '#fff'} onMouseLeave={(e) => e.target.style.color = 'var(--text-secondary)'}>{t.nav.contact}</a>
-            </div>
-          </div>
-        </div>
+        <p className="mt-12 border-t border-line pt-6 text-sm text-ink-3">
+          &copy; {new Date().getFullYear()} DevUltra. {t.footer.rights}
+        </p>
       </div>
-
-      <div className="footer-bottom">
-        <p>&copy; 2026 DevUltra Agency. {t.footer.rights}</p>
-        <p>{t.footer.built}</p>
-      </div>
-
-      <style>{`
-        .footer-container {
-          max-width: 1200px;
-          margin: 0 auto;
-          display: flex;
-          justify-content: space-between;
-          align-items: flex-start;
-          flex-wrap: wrap;
-          gap: 40px;
-        }
-        .footer-links {
-          display: flex;
-          gap: clamp(30px, 6vw, 60px);
-        }
-        .footer-bottom {
-          max-width: 1200px;
-          margin: clamp(40px, 8vw, 60px) auto 0;
-          padding-top: 30px;
-          border-top: 1px solid var(--glass-border);
-          display: flex;
-          justify-content: space-between;
-          flex-wrap: wrap;
-          gap: 15px;
-          font-size: clamp(0.75rem, 2vw, 0.85rem);
-          color: var(--text-secondary);
-        }
-        @media (max-width: 600px) {
-          .footer-container {
-            flex-direction: column;
-            align-items: flex-start;
-          }
-          .footer-bottom {
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-          }
-        }
-      `}</style>
     </footer>
   )
 }
-
-export default Footer

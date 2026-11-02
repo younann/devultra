@@ -1,181 +1,57 @@
 import React, { useContext } from 'react'
-import { motion, useScroll, useTransform, useSpring } from 'framer-motion'
-import Background3D from '../components/Background3D'
+import { motion } from 'framer-motion'
+import { ArrowRight, Sparkle } from '@phosphor-icons/react'
+import ChatDemo from '../components/ChatDemo'
 import { LangContext } from '../App'
 
-const Hero = () => {
+const ease = [0.23, 1, 0.32, 1]
+const enter = (delay) => ({
+  initial: { opacity: 0, transform: 'translateY(14px)' },
+  animate: { opacity: 1, transform: 'translateY(0px)' },
+  transition: { duration: 0.7, delay, ease }
+})
+
+export default function Hero() {
   const { t } = useContext(LangContext)
-  const { scrollY } = useScroll()
-
-  const y1 = useTransform(scrollY, [0, 1000], [0, 500])
-  const y2 = useTransform(scrollY, [0, 1000], [0, -200])
-  const rotateX = useTransform(scrollY, [0, 1000], [0, 15])
-  const scale = useTransform(scrollY, [0, 500], [1, 0.8])
-  const opacity = useTransform(scrollY, [0, 400], [1, 0])
-
-  const springY1 = useSpring(y1, { stiffness: 100, damping: 30 })
-  const springY2 = useSpring(y2, { stiffness: 50, damping: 20 })
 
   return (
-    <section
-      style={{
-        height: '100vh',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        position: 'relative',
-        overflow: 'hidden',
-        padding: '0 5%',
-        perspective: '1500px'
-      }}
-    >
-      <Background3D />
+    <section className="night aurora">
 
-      <motion.div
-        style={{
-          y: springY1,
-          rotateX,
-          scale,
-          opacity,
-          textAlign: 'center',
-          zIndex: 10,
-          transformStyle: 'preserve-3d'
-        }}
-      >
-        <motion.div style={{ transform: 'translateZ(100px)' }}>
-          <motion.span
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="hero-badge"
-            style={{
-              display: 'inline-block',
-              fontSize: 'clamp(0.7rem, 2vw, 1rem)',
-              fontWeight: 700,
-              letterSpacing: '0.4em',
-              textTransform: 'uppercase',
-              color: 'var(--accent-primary)',
-              marginBottom: '20px'
-            }}
-          >
-            {t.hero.badge}
-          </motion.span>
-
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            style={{
-              fontSize: 'clamp(2.5rem, 10vw, 7.5rem)',
-              lineHeight: 0.85,
-              fontWeight: 900,
-              marginBottom: '30px',
-              letterSpacing: '-0.04em'
-            }}
-          >
-            {t.hero.title1} <br />
-            <span className="text-gradient">{t.hero.title2}</span> <br />
-            {t.hero.title3}
-          </motion.h1>
-        </motion.div>
-
-        <motion.div style={{ y: springY2, transform: 'translateZ(50px)' }}>
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5 }}
-            style={{
-              color: 'var(--text-secondary)',
-              fontSize: 'clamp(0.9rem, 2.5vw, 1.2rem)',
-              maxWidth: '700px',
-              margin: '0 auto 50px',
-              lineHeight: 1.4
-            }}
-          >
-            {t.hero.desc}
+      <div className="relative mx-auto grid min-h-[100dvh] max-w-7xl items-center gap-14 px-4 pb-20 pt-28 sm:px-6 lg:grid-cols-12 lg:gap-10 lg:px-8 lg:pb-20 lg:pt-24">
+        <div className="lg:col-span-7">
+          <motion.p {...enter(0)} className="mb-6 inline-flex items-center gap-2 rounded-full border border-line bg-surface/60 px-3.5 py-1.5 text-sm font-medium text-ink-2 backdrop-blur">
+            <Sparkle size={14} weight="fill" className="text-[#6fd3ff]" />
+            {t.hero.eyebrow}
           </motion.p>
+          <motion.h1
+            {...enter(0.06)}
+            className="hero-title max-w-[16ch] text-[2.6rem] font-semibold leading-[1.05] sm:text-5xl lg:text-[4.1rem]"
+          >
+            {t.hero.titleA}{' '}
+            <span className="text-grad">{t.hero.titleEm}</span>
+          </motion.h1>
+          <motion.p {...enter(0.12)} className="mt-6 max-w-[48ch] text-lg leading-relaxed text-ink-2">
+            {t.hero.sub}
+          </motion.p>
+          <motion.div {...enter(0.18)} className="mt-9 flex flex-col gap-3 sm:flex-row">
+            <a href="#contact" className="btn btn-primary">
+              {t.nav.cta}
+              <ArrowRight size={18} weight="bold" className="arrow" />
+            </a>
+            <a href="#portfolio" className="btn btn-secondary">{t.hero.cta2}</a>
+          </motion.div>
+        </div>
 
-          <div className="hero-buttons" style={{ display: 'flex', gap: '15px', justifyContent: 'center', flexWrap: 'wrap' }}>
-            <button className="primary-btn" onClick={()=>window.location.href='#contact'}>{t.hero.cta1}</button>
-            <button className="secondary-btn" onClick={()=>window.location.href='#portfolio'}>{t.hero.cta2}</button>
-          </div>
+        <motion.div
+          initial={{ opacity: 0, transform: 'translateY(24px)' }}
+          animate={{ opacity: 1, transform: 'translateY(0px)' }}
+          transition={{ duration: 0.9, delay: 0.2, ease }}
+          className="mx-auto w-full max-w-md lg:col-span-5 lg:max-w-none"
+        >
+          <ChatDemo />
+          <p className="mx-auto mt-12 max-w-[40ch] text-center text-sm text-ink-3">{t.chat.caption}</p>
         </motion.div>
-      </motion.div>
-
-      <motion.div
-        animate={{ y: [0, -40, 0], rotate: [0, 360], scale: [1, 1.2, 1] }}
-        transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-        style={{
-          position: 'absolute',
-          top: '20%',
-          left: '10%',
-          width: '150px',
-          height: '150px',
-          background: 'radial-gradient(circle, var(--accent-primary) 0%, transparent 70%)',
-          borderRadius: '50%',
-          opacity: 0.15,
-          filter: 'blur(50px)'
-        }}
-      />
-      <motion.div
-        animate={{ y: [0, 50, 0], rotate: [360, 0], scale: [1, 1.3, 1] }}
-        transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-        style={{
-          position: 'absolute',
-          bottom: '15%',
-          right: '5%',
-          width: '200px',
-          height: '200px',
-          background: 'radial-gradient(circle, var(--accent-secondary) 0%, transparent 70%)',
-          borderRadius: '50%',
-          opacity: 0.15,
-          filter: 'blur(60px)'
-        }}
-      />
-
-      <style>{`
-        .primary-btn {
-          background: var(--text-primary);
-          color: var(--bg-primary);
-          padding: 16px 32px;
-          border-radius: 100px;
-          border: none;
-          font-weight: 800;
-          font-size: clamp(0.9rem, 2vw, 1.1rem);
-          cursor: pointer;
-          transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-        .primary-btn:hover {
-          transform: translateY(-5px) scale(1.05);
-          box-shadow: 0 20px 40px rgba(59, 130, 246, 0.3);
-        }
-        .secondary-btn {
-          background: transparent;
-          color: var(--text-primary);
-          padding: 16px 32px;
-          border-radius: 100px;
-          border: 1px solid var(--glass-border);
-          font-weight: 600;
-          font-size: clamp(0.9rem, 2vw, 1.1rem);
-          cursor: pointer;
-          transition: all 0.3s ease;
-        }
-        .secondary-btn:hover {
-          background: var(--glass-bg);
-          border-color: var(--accent-primary);
-        }
-        @media (max-width: 768px) {
-          .hero-buttons {
-            flex-direction: column;
-            align-items: center;
-          }
-          .primary-btn, .secondary-btn {
-            width: 100%;
-            max-width: 280px;
-          }
-        }
-      `}</style>
+      </div>
     </section>
   )
 }
-
-export default Hero

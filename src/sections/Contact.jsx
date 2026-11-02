@@ -1,246 +1,138 @@
 import React, { useContext, useState } from 'react'
-import { motion } from 'framer-motion'
-import { Mail, Phone, CheckCircle, AlertCircle } from 'lucide-react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { EnvelopeSimple, WhatsappLogo, Phone, CheckCircle, WarningCircle, ArrowRight } from '@phosphor-icons/react'
+import Reveal from '../components/Reveal'
 import { LangContext } from '../App'
 
-const Contact = () => {
-  const { t } = useContext(LangContext)
-  const [formStatus, setFormStatus] = useState(null) // 'success', 'error', or null
-  const [isSubmitting, setIsSubmitting] = useState(false)
+const EMAIL = 'younan.n@gmail.com'
+const PHONE_DISPLAY = '+972 50-659-8192'
+const PHONE_RAW = '+972506598192'
+const WHATSAPP = '972506598192'
 
-  const inputStyle = {
-    background: 'rgba(255,255,255,0.05)',
-    border: '1px solid var(--glass-border)',
-    borderRadius: '12px',
-    padding: 'clamp(14px, 3vw, 18px)',
-    color: '#fff',
-    fontSize: 'clamp(0.9rem, 2vw, 1rem)',
-    width: '100%',
-    outline: 'none',
-    fontFamily: 'inherit',
-    transition: 'border-color 0.3s ease'
+export default function Contact() {
+  const { t } = useContext(LangContext)
+  const c = t.contact
+  const [status, setStatus] = useState('idle')
+
+  const onSubmit = async (e) => {
+    e.preventDefault()
+    const form = e.currentTarget
+    setStatus('sending')
+    try {
+      const res = await fetch('https://formspree.io/f/mykjwpbj', {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { Accept: 'application/json' }
+      })
+      if (res.ok) {
+        form.reset()
+        setStatus('success')
+      } else {
+        setStatus('error')
+      }
+    } catch {
+      setStatus('error')
+    }
   }
 
+  const channels = [
+    { Icon: WhatsappLogo, label: c.whatsappLabel, value: PHONE_DISPLAY, href: `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(t.whatsapp.defaultMessage)}`, external: true },
+    { Icon: EnvelopeSimple, label: c.emailLabel, value: EMAIL, href: `mailto:${EMAIL}` },
+    { Icon: Phone, label: c.phoneLabel, value: PHONE_DISPLAY, href: `tel:${PHONE_RAW}` }
+  ]
+
   return (
-    <section id="contact" className="section-padding" style={{ background: 'var(--bg-secondary)' }}>
-      <div className="contact-container">
-        <motion.div
-          initial={{ opacity: 0, x: -30 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          className="contact-info"
-        >
-          <span className="text-gradient" style={{ fontWeight: 700, textTransform: 'uppercase', fontSize: 'clamp(0.7rem, 2vw, 0.9rem)' }}>
-            {t.contact.badge}
-          </span>
-          <h2 style={{ fontSize: 'clamp(1.8rem, 5vw, 3rem)', margin: '10px 0 30px' }}>{t.contact.title}</h2>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '25px' }}>
-            <div style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
-              <div style={{
-                width: 'clamp(45px, 8vw, 55px)',
-                height: 'clamp(45px, 8vw, 55px)',
-                borderRadius: '50%',
-                background: 'var(--glass-bg)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                color: 'var(--accent-primary)',
-                flexShrink: 0
-              }}>
-                <Mail size={20} />
-              </div>
-              <div>
-                <p style={{ fontSize: 'clamp(0.7rem, 2vw, 0.85rem)', color: 'var(--text-secondary)', marginBottom: '4px' }}>{t.contact.emailLabel}</p>
-                <p style={{ fontWeight: 600, fontSize: 'clamp(0.9rem, 2vw, 1rem)' }}>younan.n@gmail.com</p>
-              </div>
-            </div>
-            <div style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
-              <div style={{
-                width: 'clamp(45px, 8vw, 55px)',
-                height: 'clamp(45px, 8vw, 55px)',
-                borderRadius: '50%',
-                background: 'var(--glass-bg)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                color: 'var(--accent-primary)',
-                flexShrink: 0
-              }}>
-                <Phone size={20} />
-              </div>
-              <div>
-                <p style={{ fontSize: 'clamp(0.7rem, 2vw, 0.85rem)', color: 'var(--text-secondary)', marginBottom: '4px' }}>{t.contact.callLabel}</p>
-                <p style={{ fontWeight: 600, fontSize: 'clamp(0.9rem, 2vw, 1rem)' }}>+972 (050) 659-8192</p>
-              </div>
-            </div>
-          </div>
-        </motion.div>
+    <section id="contact" className="py-24 lg:py-32">
+      <div className="mx-auto grid max-w-7xl items-stretch gap-6 px-4 sm:px-6 lg:grid-cols-12 lg:gap-8 lg:px-8">
+        <Reveal className="night aurora rounded-[24px] p-7 sm:p-9 lg:col-span-5">
+          <h2 className="text-3xl font-semibold leading-tight sm:text-4xl lg:text-5xl">{c.title}</h2>
+          <p className="mt-5 max-w-[40ch] text-lg text-ink-2">{c.sub}</p>
 
-        <motion.div
-          initial={{ opacity: 0, x: 30 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          className="glass contact-form"
-          style={{ padding: 'clamp(25px, 5vw, 40px)', borderRadius: '30px' }}
-        >
-          {formStatus === 'success' ? (
-            <div style={{ textAlign: 'center', padding: '40px 20px' }}>
-              <CheckCircle size={60} color="#22c55e" style={{ marginBottom: '20px' }} />
-              <h3 style={{ fontSize: '1.5rem', marginBottom: '10px' }}>
-                {t.dir === 'rtl' ? 'תודה!' : 'Thank you!'}
-              </h3>
-              <p style={{ color: 'var(--text-secondary)' }}>
-                {t.dir === 'rtl' ? 'ההודעה נשלחה בהצלחה. נחזור אליך בהקדם.' : 'Your message has been sent. We\'ll get back to you soon.'}
-              </p>
-            </div>
-          ) : (
-            <form
-              style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}
-              onSubmit={async (e) => {
-                e.preventDefault()
-                setIsSubmitting(true)
-                setFormStatus(null)
+          <ul className="mt-10 space-y-3">
+            {channels.map(({ Icon, label, value, href, external }) => (
+              <li key={label}>
+                <a
+                  href={href}
+                  {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                  className="group flex items-center gap-4 rounded-2xl border border-line bg-white/[0.04] p-4 transition-colors duration-200 hover:bg-white/[0.08]"
+                >
+                  <span className="bg-grad grid size-11 place-items-center rounded-xl text-white">
+                    <Icon size={22} />
+                  </span>
+                  <span className="min-w-0 flex-1">
+                    <span className="block text-sm text-ink-3">{label}</span>
+                    <span className="block truncate font-medium" dir="ltr" style={{ textAlign: 'start' }}>{value}</span>
+                  </span>
+                  <ArrowRight size={18} className="arrow text-ink-3" />
+                </a>
+              </li>
+            ))}
+          </ul>
+        </Reveal>
 
-                const formData = new FormData(e.target)
-
-                try {
-                  // Get your form ID from https://formspree.io (free, 50 submissions/month)
-                  // Replace YOUR_FORM_ID with your actual Formspree form ID
-                  const response = await fetch(
-                    "https://formspree.io/f/mykjwpbj",
-                    {
-                      method: "POST",
-                      body: formData,
-                      headers: {
-                        Accept: "application/json",
-                      },
-                    },
-                  );
-
-                  if (response.ok) {
-                    setFormStatus('success')
-                    e.target.reset()
-                  } else {
-                    setFormStatus('error')
-                  }
-                } catch (error) {
-                  setFormStatus('error')
-                }
-
-                setIsSubmitting(false)
-              }}
-            >
-              {formStatus === 'error' && (
-                <div style={{
-                  background: 'rgba(239, 68, 68, 0.1)',
-                  border: '1px solid rgba(239, 68, 68, 0.3)',
-                  borderRadius: '12px',
-                  padding: '12px 16px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '10px',
-                  color: '#ef4444'
-                }}>
-                  <AlertCircle size={20} />
-                  <span>{t.dir === 'rtl' ? 'שגיאה בשליחה. נסה שוב.' : 'Error sending. Please try again.'}</span>
-                </div>
-              )}
-              <div className="form-row">
-                <input
-                  type="text"
-                  name="name"
-                  required
-                  placeholder={t.contact.namePlaceholder}
-                  style={inputStyle}
-                  onFocus={(e) => e.target.style.borderColor = 'var(--accent-primary)'}
-                  onBlur={(e) => e.target.style.borderColor = 'var(--glass-border)'}
-                />
-                <input
-                  type="email"
-                  name="email"
-                  required
-                  placeholder={t.contact.emailPlaceholder}
-                  style={inputStyle}
-                  onFocus={(e) => e.target.style.borderColor = 'var(--accent-primary)'}
-                  onBlur={(e) => e.target.style.borderColor = 'var(--glass-border)'}
-                />
-              </div>
-              <select name="service" required style={{ ...inputStyle, cursor: 'pointer' }}>
-                <option value="">{t.contact.servicePlaceholder}</option>
-                <option value="web-development">Web Development</option>
-                <option value="app-development">App Development</option>
-                <option value="devops">DevOps & Cloud</option>
-                <option value="design">UI/UX Design</option>
-                <option value="automation">Business Automation</option>
-              </select>
-              <textarea
-                name="message"
-                required
-                placeholder={t.contact.messagePlaceholder}
-                rows="5"
-                style={{ ...inputStyle, resize: 'none' }}
-                onFocus={(e) => e.target.style.borderColor = 'var(--accent-primary)'}
-                onBlur={(e) => e.target.style.borderColor = 'var(--glass-border)'}
-              />
-              <button
-                type="submit"
-                className="contact-submit-btn"
-                disabled={isSubmitting}
-                style={{ opacity: isSubmitting ? 0.7 : 1 }}
+        <Reveal delay={0.05} className="card p-6 shadow-[var(--shadow)] sm:p-9 lg:col-span-7">
+          <AnimatePresence mode="wait" initial={false}>
+            {status === 'success' ? (
+              <motion.div
+                key="ok"
+                initial={{ opacity: 0, transform: 'scale(0.97)' }}
+                animate={{ opacity: 1, transform: 'scale(1)' }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.3, ease: [0.23, 1, 0.32, 1] }}
+                className="flex min-h-[28rem] flex-col items-center justify-center text-center"
+                role="status"
               >
-                {isSubmitting
-                  ? (t.dir === 'rtl' ? 'שולח...' : 'Sending...')
-                  : t.contact.submit
-                }
-              </button>
-            </form>
-          )}
-        </motion.div>
+                <CheckCircle size={52} weight="fill" className="text-accent" />
+                <h3 className="mt-5 text-2xl font-semibold">{c.successTitle}</h3>
+                <p className="mt-2 max-w-[36ch] text-ink-2">{c.successBody}</p>
+                <button onClick={() => setStatus('idle')} className="btn btn-secondary mt-8">{c.sendAnother}</button>
+              </motion.div>
+            ) : (
+              <motion.form
+                key="form"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0, transition: { duration: 0.12 } }}
+                onSubmit={onSubmit}
+                className="grid gap-5"
+              >
+                {status === 'error' && (
+                  <div role="alert" className="flex items-center gap-3 rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-700 dark:text-red-300">
+                    <WarningCircle size={20} className="shrink-0" />
+                    {c.error}
+                  </div>
+                )}
+                <div className="grid gap-5 sm:grid-cols-2">
+                  <div className="grid gap-2">
+                    <label htmlFor="contact-name" className="text-sm font-medium">{c.nameLabel}</label>
+                    <input id="contact-name" name="name" type="text" required autoComplete="name" placeholder={c.namePlaceholder} className="field" />
+                  </div>
+                  <div className="grid gap-2">
+                    <label htmlFor="contact-email" className="text-sm font-medium">{c.emailFieldLabel}</label>
+                    <input id="contact-email" name="email" type="email" required autoComplete="email" placeholder={c.emailPlaceholder} className="field" dir="ltr" />
+                  </div>
+                </div>
+                <div className="grid gap-2">
+                  <label htmlFor="contact-service" className="text-sm font-medium">{c.serviceLabel}</label>
+                  <select id="contact-service" name="service" required defaultValue="" className="field cursor-pointer">
+                    <option value="" disabled>{c.servicePlaceholder}</option>
+                    {Object.entries(c.serviceOptions).map(([value, label]) => (
+                      <option key={value} value={value}>{label}</option>
+                    ))}
+                  </select>
+                </div>
+                <div className="grid gap-2">
+                  <label htmlFor="contact-message" className="text-sm font-medium">{c.messageLabel}</label>
+                  <textarea id="contact-message" name="message" required rows={5} placeholder={c.messagePlaceholder} className="field resize-none" />
+                </div>
+                <button type="submit" disabled={status === 'sending'} className="btn btn-primary w-full disabled:cursor-wait disabled:opacity-70">
+                  {status === 'sending' ? c.sending : c.submit}
+                </button>
+              </motion.form>
+            )}
+          </AnimatePresence>
+        </Reveal>
       </div>
-
-      <style>{`
-        .contact-container {
-          max-width: 1200px;
-          margin: 0 auto;
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: clamp(40px, 8vw, 80px);
-          align-items: start;
-        }
-        .form-row {
-          display: flex;
-          gap: 20px;
-        }
-        .contact-submit-btn {
-          background: var(--text-primary);
-          color: var(--bg-primary);
-          padding: 18px 40px;
-          border-radius: 100px;
-          border: none;
-          font-weight: 800;
-          font-size: 1rem;
-          cursor: pointer;
-          transition: all 0.3s ease;
-          width: 100%;
-        }
-        .contact-submit-btn:hover {
-          transform: translateY(-3px);
-          box-shadow: 0 15px 30px rgba(59, 130, 246, 0.3);
-        }
-        @media (max-width: 900px) {
-          .contact-container {
-            grid-template-columns: 1fr;
-            gap: 40px;
-          }
-        }
-        @media (max-width: 600px) {
-          .form-row {
-            flex-direction: column;
-          }
-        }
-      `}</style>
     </section>
   )
 }
-
-export default Contact

@@ -1,126 +1,67 @@
 import React, { useContext } from 'react'
-import { motion } from 'framer-motion'
-import ParallaxSection from '../components/ParallaxSection'
+import { motion, useScroll, useTransform } from 'framer-motion'
+import { useRef } from 'react'
+import Reveal from '../components/Reveal'
 import { LangContext } from '../App'
 
-const images = [
-  '/projects/calma-by-lamar.png'
-]
-const offsets = [40]
-
-const ProjectCard = ({ project, index, image, offset }) => {
-  const handleClick = () => {
-    if (project.link) {
-      window.open(project.link, '_blank', 'noopener,noreferrer')
-    }
-  }
-
-  return (
-    <ParallaxSection offset={offset} speed={1.5}>
-      <motion.div
-        className="portfolio-card"
-        onClick={handleClick}
-        style={{
-          position: 'relative',
-          borderRadius: 'clamp(20px, 5vw, 40px)',
-          overflow: 'hidden',
-          height: 'clamp(400px, 60vw, 600px)',
-          cursor: 'pointer',
-          background: 'var(--bg-secondary)',
-          border: '1px solid var(--glass-border)'
-        }}
-      >
-        <motion.div
-          style={{ height: '70%', overflow: 'hidden', position: 'relative' }}
-          initial="rest"
-          whileHover="hover"
-        >
-          <motion.img
-            src={image}
-            alt={project.title}
-            variants={{ rest: { scale: 1 }, hover: { scale: 1.15 } }}
-            transition={{ duration: 0.8 }}
-            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-          />
-          <motion.div
-            variants={{ rest: { opacity: 1 }, hover: { opacity: 0 } }}
-            transition={{ duration: 0.4 }}
-            style={{
-              position: 'absolute',
-              inset: 0,
-              background: 'linear-gradient(135deg, rgba(138, 43, 226, 0.3) 0%, rgba(0, 206, 209, 0.2) 100%)',
-              pointerEvents: 'none'
-            }}
-          />
-        </motion.div>
-        <div style={{ padding: 'clamp(20px, 5vw, 40px)', background: 'var(--bg-secondary)' }}>
-          <span style={{
-            fontSize: 'clamp(0.7rem, 2vw, 0.9rem)',
-            fontWeight: 800,
-            color: 'var(--accent-primary)',
-            letterSpacing: '0.2em',
-            display: 'block',
-            marginBottom: '10px'
-          }}>
-            {project.category}
-          </span>
-          <h3 style={{
-            fontSize: 'clamp(1.5rem, 4vw, 2.5rem)',
-            fontWeight: 900,
-            margin: 0
-          }}>
-            {project.title}
-          </h3>
-        </div>
-      </motion.div>
-    </ParallaxSection>
-  )
-}
-
-const Portfolio = () => {
+export default function Portfolio() {
   const { t } = useContext(LangContext)
-  return (
-    <section id="portfolio" className="section-padding">
-      <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
-        <div style={{ textAlign: 'center', marginBottom: 'clamp(50px, 10vw, 100px)' }}>
-          <span className="text-gradient" style={{
-            fontWeight: 800,
-            textTransform: 'uppercase',
-            letterSpacing: '0.5em',
-            fontSize: 'clamp(0.7rem, 2vw, 0.9rem)'
-          }}>
-            {t.portfolio.badge}
-          </span>
-          <h2 style={{
-            fontSize: 'clamp(2rem, 7vw, 5rem)',
-            marginTop: '10px',
-            fontWeight: 900
-          }}>
-            {t.portfolio.title}
-          </h2>
-        </div>
-        <div className="portfolio-grid">
-          {t.portfolio.items.map((project, i) => (
-            <ProjectCard key={project.title} project={project} index={i} image={images[i]} offset={offsets[i]} />
-          ))}
-        </div>
-      </div>
+  const w = t.work
+  const ref = useRef(null)
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'center center'] })
+  const scale = useTransform(scrollYProgress, [0, 1], [0.94, 1])
 
-      <style>{`
-        .portfolio-grid {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-          gap: clamp(30px, 6vw, 80px);
-        }
-        @media (max-width: 768px) {
-          .portfolio-grid {
-            grid-template-columns: 1fr;
-            gap: 30px;
-          }
-        }
-      `}</style>
+  return (
+    <section id="portfolio" className="relative py-24 lg:py-32">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <Reveal as="h2" className="text-3xl font-semibold leading-tight sm:text-4xl lg:text-5xl">
+          {w.title}
+        </Reveal>
+
+        <article className="mt-14">
+          <motion.div
+            ref={ref}
+            style={{ scale }}
+            className="overflow-hidden rounded-[20px] border border-line bg-surface-2 p-2 sm:p-3"
+          >
+            <img
+              src="/projects/calma-by-lamar.png"
+              alt="Calma by Lamar store: homepage with handmade decor products"
+              width="1912"
+              height="927"
+              loading="lazy"
+              className="w-full rounded-[14px]"
+            />
+          </motion.div>
+
+          <div className="mt-10 grid gap-10 lg:grid-cols-12">
+            <Reveal className="lg:col-span-5">
+              <p className="text-sm text-ink-3">{w.category}</p>
+              <h3 className="mt-1 text-2xl font-semibold sm:text-3xl" dir="ltr" style={{ textAlign: 'start' }}>{w.name}</h3>
+              <p className="mt-3 max-w-[42ch] text-ink-2">{w.intro}</p>
+            </Reveal>
+
+            <Reveal delay={0.05} className="grid gap-8 sm:grid-cols-3 lg:col-span-7">
+              <div>
+                <h4 className="text-sm font-semibold">{w.challengeLabel}</h4>
+                <p className="mt-2 text-sm leading-relaxed text-ink-2">{w.challenge}</p>
+              </div>
+              <div>
+                <h4 className="text-sm font-semibold">{w.builtLabel}</h4>
+                <p className="mt-2 text-sm leading-relaxed text-ink-2">{w.built}</p>
+              </div>
+              <div>
+                <h4 className="text-sm font-semibold">{w.deliverablesLabel}</h4>
+                <ul className="mt-2 flex flex-wrap gap-1.5">
+                  {w.deliverables.map((d) => (
+                    <li key={d} className="rounded-full border border-line px-2.5 py-1 text-xs text-ink-2">{d}</li>
+                  ))}
+                </ul>
+              </div>
+            </Reveal>
+          </div>
+        </article>
+      </div>
     </section>
   )
 }
-
-export default Portfolio
